@@ -20,26 +20,20 @@ test {
 }
 
 // Configuración de publicación
-afterEvaluate {
-    publishing {
-        publications {
-            mavenJava(MavenPublication) {
-                from components.java
-            }
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
         }
-        repositories {
-            maven {
-                name = "GitHubPackages"
-                url = uri("https://maven.pkg.github.com/NicoPrograms/GCS--Galaga")
-                credentials {
-                    username = project.findProperty("gpr.user") ?: System.getenv("USERNAME_GITHUB")
-                    password = project.findProperty("gpr.token") ?: System.getenv("TOKEN_GITHUB")
-                }
+    }
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/NicoPrograms/GCS--Galaga")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME_GITHUB")
+                password = project.findProperty("gpr.token") ?: System.getenv("TOKEN_GITHUB")
             }
         }
     }
-}
-
-task publish(dependsOn: 'publishing', description: 'Publishes the artifacts to GitHub Packages') {
-    // Aquí puedes agregar cualquier acción adicional que desees realizar antes de la publicación.
 }
