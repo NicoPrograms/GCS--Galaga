@@ -38,7 +38,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: jacoco-report
-          path: build/reports/jacoco/test/html # Ajusta la ruta según donde se genera tu informe
+          path: build/jacoco/generateJacocoReport/html # Ajusta la ruta según donde se genera tu informe
 
       - name: Check Jacoco Coverage
         id: jacoco-coverage

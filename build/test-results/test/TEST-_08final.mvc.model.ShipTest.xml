@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="_08final.mvc.model.ShipTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2023-10-05T22:38:24" hostname="DESKTOP-10Q88AS" time="0.228">
+<testsuite name="_08final.mvc.model.ShipTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2023-10-05T23:14:43" hostname="DESKTOP-10Q88AS" time="0.176">
   <properties/>
-  <testcase name="testMoveDown()" classname="_08final.mvc.model.ShipTest" time="0.171"/>
-  <testcase name="testMoveLeft()" classname="_08final.mvc.model.ShipTest" time="0.013"/>
-  <testcase name="testMoveUp()" classname="_08final.mvc.model.ShipTest" time="0.017"/>
-  <testcase name="testMoveRight()" classname="_08final.mvc.model.ShipTest" time="0.021"/>
+  <testcase name="testMoveDown()" classname="_08final.mvc.model.ShipTest" time="0.144"/>
+  <testcase name="testMoveLeft()" classname="_08final.mvc.model.ShipTest" time="0.012"/>
+  <testcase name="testMoveUp()" classname="_08final.mvc.model.ShipTest" time="0.008"/>
+  <testcase name="testMoveRight()" classname="_08final.mvc.model.ShipTest" time="0.008"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
