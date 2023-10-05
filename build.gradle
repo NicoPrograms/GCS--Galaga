@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'maven-publish'
 }
 
 group '_08final.mvc.model'
@@ -18,19 +19,22 @@ test {
     useJUnitPlatform()
 }
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
+// Configuración de publicación
+afterEvaluate {
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+            }
         }
-    }
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/NicoPrograms/GCS--Galaga") // Reemplaza con la URL correcta de tu repositorio de GitHub Packages
-            credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME_GITHUB")
-                password = project.findProperty("gpr.token") ?: System.getenv("TOKEN_GITHUB")
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/NicoPrograms/GCS--Galaga")
+                credentials {
+                    username = project.findProperty("gpr.user") ?: System.getenv("USERNAME_GITHUB")
+                    password = project.findProperty("gpr.token") ?: System.getenv("TOKEN_GITHUB")
+                }
             }
         }
     }
