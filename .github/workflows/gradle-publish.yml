@@ -28,12 +28,6 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
 
-    - name: Publish to GitHub Packages
-      run: ./gradlew publish  # Asumiendo que tengas una tarea de publicación configurada en tu build.gradle
-
-    - name: Clean up
-      run: ./gradlew clean
-
     # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
     # the publishing section of your build.gradle
     - name: Publish to GitHub Packages
