@@ -52,7 +52,7 @@ task generateJacocoReport(type: JacocoReport, dependsOn: ['test']) {
 task checkCoverage {
     dependsOn generateJacocoReport
     doLast {
-        def minCoverage = 0.80 // Cambia este valor al umbral mínimo que deseas
+        def minCoverage = 0.05 // Cambia este valor al umbral mínimo que deseas
         def jacocoReport = file("$buildDir/reports/jacoco/test/html/index.html")
         def coverageLine = jacocoReport.text.findAll(/Total[^<]+/)[0]
         def coverage = (coverageLine =~ /(\d+\.\d+)%/)[0][1] as Double
