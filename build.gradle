@@ -53,9 +53,10 @@ task checkCoverage {
     dependsOn generateJacocoReport
     doLast {
         def minCoverage = 0.15 // Cambia este valor al umbral mínimo que deseas
-        def jacocoReport = file("$buildDir/reports/jacoco/test/html/index.html")
+        def jacocoReport = file("$buildDir/jacoco/generateJacocoReport/html/index.html")
         def coverageLine = jacocoReport.text.findAll(/Total[^<]+/)[0]
         def coverage = (coverageLine =~ /(\d+\.\d+)%/)[0][1] as Double
+
 
         if (coverage < minCoverage) {
             throw new GradleException("La cobertura de código actual ($coverage%) es menor que el umbral mínimo ($minCoverage%)")
