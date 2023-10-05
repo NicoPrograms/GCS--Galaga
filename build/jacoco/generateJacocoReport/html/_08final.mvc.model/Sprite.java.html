@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Sprite.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Galaga</a> &gt; <a href="index.source.html" class="el_package">_08final.mvc.model</a> &gt; <span class="el_source">Sprite.java</span></div><h1>Sprite.java</h1><pre class="source lang-java linenums">package _08final.mvc.model;
+
+/**
+ * Created by zhuoyuzhu on 11/26/16.
+ */
+import java.awt.*;
+import java.awt.image.BufferedImage;
+
+
+public abstract class Sprite {
+
+    /** The dimensions of the sprite */
+    private Dimension mDim;
+
+    /** The position of the sprite */
+    protected Point mPos;
+
+    /** The texture for the sprite */
+    private BufferedImage mTex;
+
+<span class="fc" id="L21">    public Sprite(Point initPos, Dimension dim, BufferedImage texture) {</span>
+<span class="fc" id="L22">        this.mPos = initPos;</span>
+<span class="fc" id="L23">        this.mDim = dim;</span>
+<span class="fc" id="L24">        this.mTex = texture;</span>
+<span class="fc" id="L25">    }</span>
+    public void draw (Graphics g) {
+<span class="nc" id="L27">        Graphics2D g2d = (Graphics2D)g;</span>
+
+<span class="nc" id="L29">        g2d.drawImage(this.mTex, (int) this.mPos.getX(), (int) this.mPos.getY(), (int) this.mDim.getWidth(),</span>
+<span class="nc" id="L30">                (int) this.mDim.getHeight(), null);</span>
+<span class="nc" id="L31">    }</span>
+
+
+    public int getX() {
+<span class="nc" id="L35">        return this.mPos.x;</span>
+    }
+
+    public int getY() {
+<span class="nc" id="L39">        return this.mPos.y;</span>
+    }
+
+    public void setX(int x) {
+<span class="nc" id="L43">        this.mPos.x = x;</span>
+<span class="nc" id="L44">    }</span>
+
+    public void setY(int y) {
+<span class="nc" id="L47">        this.mPos.y = y;</span>
+<span class="nc" id="L48">    }</span>
+
+    public BufferedImage getTexture() {
+<span class="nc" id="L51">        return this.mTex;</span>
+    }
+
+    public Rectangle getBounds() {
+<span class="nc" id="L55">        return new Rectangle(getX(), getY(), 20, 20);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

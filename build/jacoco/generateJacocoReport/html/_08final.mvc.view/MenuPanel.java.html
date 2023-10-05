@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MenuPanel.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Galaga</a> &gt; <a href="index.source.html" class="el_package">_08final.mvc.view</a> &gt; <span class="el_source">MenuPanel.java</span></div><h1>MenuPanel.java</h1><pre class="source lang-java linenums">package _08final.mvc.view;
+
+import _08final.images.SpriteTexLoader;
+import _08final.mvc.model.Sprite;
+import _08final.mvc.controller.Game;
+import _08final.sounds.Sound;
+
+import javax.imageio.ImageIO;
+import javax.sound.sampled.Clip;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.*;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+
+public class MenuPanel extends JPanel {
+    private BufferedImage image;
+
+
+<span class="nc" id="L29">    public MenuPanel() {</span>
+<span class="nc" id="L30">        setLayout(new FlowLayout());</span>
+<span class="nc" id="L31">        setPreferredSize(new Dimension(800, 600));</span>
+
+        try {
+<span class="nc" id="L34">            image = ImageIO.read(new File(&quot;src/main/java/_08final/images/Galaga.png&quot;));</span>
+<span class="nc" id="L35">        } catch (Exception e) {</span>
+<span class="nc" id="L36">            e.printStackTrace();</span>
+<span class="nc" id="L37">        }</span>
+
+<span class="nc" id="L39">    }</span>
+
+    public void mainMenu(Graphics g) {
+<span class="nc" id="L42">        g.setColor(Color.white);</span>
+<span class="nc" id="L43">        g.drawImage(image, 185, 60, 340, 180, null);</span>
+<span class="nc" id="L44">        Font fnt1 = new Font(&quot;arial&quot;, Font.BOLD, 30);</span>
+<span class="nc" id="L45">        g.setFont(fnt1);</span>
+<span class="nc" id="L46">        g.drawString(&quot;Play: Hit P&quot;, 280, 270);</span>
+<span class="nc" id="L47">        g.drawString(&quot;Help: Hit H&quot;, 280, 370);</span>
+<span class="nc" id="L48">        g.drawString(&quot;Quit: Hit Q&quot;, 280, 470);</span>
+<span class="nc" id="L49">        g.drawString(&quot;Volumen&quot;, 280, 570);</span>
+
+<span class="nc" id="L51">    }</span>
+
+    public void helpMenu(Graphics g) {
+<span class="nc" id="L54">        Font fnt1 = new Font(&quot;arial&quot;, Font.BOLD, 20);</span>
+<span class="nc" id="L55">        g.setFont(fnt1);</span>
+<span class="nc" id="L56">        g.setColor(Color.white);</span>
+<span class="nc" id="L57">        g.drawString(&quot;Instruction&quot;, 295, 50);</span>
+<span class="nc" id="L58">        g.drawString(&quot;Space Bar: Launch Missile&quot;, 220, 130);</span>
+<span class="nc" id="L59">        g.drawString(&quot;Up arrow: Move up&quot;, 220, 200);</span>
+<span class="nc" id="L60">        g.drawString(&quot;Right arrow: Move right&quot;, 220, 270);</span>
+<span class="nc" id="L61">        g.drawString(&quot;Down arrow: Move down&quot;, 220, 340);</span>
+<span class="nc" id="L62">        g.drawString(&quot;Left arrow: Move up&quot;, 220, 410);</span>
+<span class="nc" id="L63">        g.drawString(&quot;I: Increase volume&quot;, 220, 480);</span>
+<span class="nc" id="L64">        g.drawString(&quot;D: Decrease volume&quot;, 220, 550);</span>
+<span class="nc" id="L65">        g.drawString(&quot;Esc: Return to Main&quot;, 220, 620);</span>
+<span class="nc" id="L66">    }</span>
+
+
+
+
+    @Override
+    protected void paintComponent(Graphics g) {
+<span class="nc" id="L73">        super.paintComponent(g);</span>
+
+<span class="nc bnc" id="L75" title="All 2 branches missed.">        if (Game.status == Game.STATUS.MENU) {</span>
+<span class="nc" id="L76">            mainMenu(g);</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">        } else if (Game.status == Game.STATUS.HELP) {</span>
+<span class="nc" id="L78">            helpMenu(g);</span>
+        }
+<span class="nc" id="L80">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

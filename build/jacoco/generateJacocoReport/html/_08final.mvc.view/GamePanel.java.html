@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GamePanel.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Galaga</a> &gt; <a href="index.source.html" class="el_package">_08final.mvc.view</a> &gt; <span class="el_source">GamePanel.java</span></div><h1>GamePanel.java</h1><pre class="source lang-java linenums">package _08final.mvc.view;
+
+import _08final.images.SpriteTexLoader;
+import _08final.mvc.controller.EnemyController;
+import _08final.mvc.controller.Game;
+import _08final.mvc.model.Explosion;
+import _08final.mvc.model.Sprite;
+import _08final.mvc.model.Ship;
+import _08final.sounds.Sound;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
+import java.io.*;
+import java.util.Scanner;
+import java.util.*;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.Color;
+
+
+import javax.sound.sampled.Clip;
+import java.io.File;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+
+public class GamePanel extends JPanel {
+
+    private Game game;
+    private ArrayList&lt;Integer&gt; score;
+<span class="nc" id="L35">    private MenuPanel menuPanel = new MenuPanel();</span>
+<span class="nc" id="L36">    private int i = 1;</span>
+<span class="nc" id="L37">    private int currentLevel = 1;</span>
+<span class="nc" id="L38">    private int rectangulo=150;</span>
+
+
+<span class="nc" id="L41">    public GamePanel() {</span>
+<span class="nc" id="L42">        this.setPreferredSize(GameFrame.FRAME_DIM);</span>
+<span class="nc" id="L43">    }</span>
+
+    //--------------------------
+
+    //-------------------------------------
+
+    @Override
+    public void paintComponent(Graphics g) {
+<span class="nc" id="L51">        super.paintComponent(g);</span>
+
+<span class="nc" id="L53">        int currentLevel = game.getLevel();</span>
+
+<span class="nc bnc" id="L55" title="All 2 branches missed.">        if (currentLevel == 1) {</span>
+<span class="nc" id="L56">            g.drawImage(SpriteTexLoader.load(SpriteTexLoader.SpriteTex.BACKGROUND), 0, 0,</span>
+                    GameFrame.FRAME_DIM.width, GameFrame.FRAME_DIM.height, this);
+<span class="nc bnc" id="L58" title="All 2 branches missed.">        } else if (currentLevel == 2) {</span>
+<span class="nc" id="L59">            g.drawImage(SpriteTexLoader.load(SpriteTexLoader.SpriteTex.BACKGROUND), 0, 0,</span>
+                    GameFrame.FRAME_DIM.width, GameFrame.FRAME_DIM.height, this);
+<span class="nc bnc" id="L61" title="All 2 branches missed.">        } else if (currentLevel == 3) {</span>
+<span class="nc" id="L62">            g.drawImage(SpriteTexLoader.load(SpriteTexLoader.SpriteTex.BACKGROUND), 0, 0,</span>
+                    GameFrame.FRAME_DIM.width, GameFrame.FRAME_DIM.height, this);
+        }
+<span class="nc bnc" id="L65" title="All 2 branches missed.">        else if (currentLevel == 4) {</span>
+<span class="nc" id="L66">            g.drawImage(SpriteTexLoader.load(SpriteTexLoader.SpriteTex.BACKGROUND2), 0, 0,</span>
+                    GameFrame.FRAME_DIM.width, GameFrame.FRAME_DIM.height, this);
+        }
+<span class="nc bnc" id="L69" title="All 2 branches missed.">        else if (currentLevel &gt; 4) {</span>
+<span class="nc" id="L70">            g.drawImage(SpriteTexLoader.load(SpriteTexLoader.SpriteTex.BACKGROUND2), 0, 0,</span>
+                    GameFrame.FRAME_DIM.width, GameFrame.FRAME_DIM.height, this);
+        }
+
+
+<span class="nc" id="L75">        ArrayList&lt;Sprite&gt; sprites = Game.getDrawableSprites();</span>
+
+<span class="nc bnc" id="L77" title="All 2 branches missed.">        for (Sprite sprite : sprites) {</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            if (Game.status == Game.STATUS.MENU) {</span>
+<span class="nc" id="L79">                menuPanel.mainMenu(g);</span>
+<span class="nc" id="L80">                g.setColor(Color.white);</span>
+                //volumen
+<span class="nc" id="L82">                g.fillRect(280, 620, rectangulo, 30);</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">            } else if (Game.status == Game.STATUS.HELP) {</span>
+<span class="nc" id="L84">                menuPanel.helpMenu(g);</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">            } else if (Game.status == Game.STATUS.GAME_OVER) {</span>
+<span class="nc" id="L86">                Font fnt2 = new Font(&quot;Matura MT Script Capitals&quot;, Font.ITALIC, 80);</span>
+<span class="nc" id="L87">                g.setFont(fnt2);</span>
+<span class="nc" id="L88">                g.setColor(Color.red);</span>
+<span class="nc" id="L89">                g.drawString(&quot;Game Over!&quot;, 130, 350);</span>
+<span class="nc" id="L90">                Font fnt4 = new Font(&quot;Courier New&quot;, Font.ITALIC, 30);</span>
+<span class="nc" id="L91">                g.setFont(fnt4);</span>
+<span class="nc" id="L92">                g.setColor(Color.lightGray);</span>
+<span class="nc" id="L93">                g.drawString(&quot;Play again?&quot;, 280, 450);</span>
+<span class="nc" id="L94">                g.drawString(&quot;Y/N&quot;, 330, 500);</span>
+                try {
+<span class="nc" id="L96">                    int s = Game.score;</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">                    if (i == 1) {</span>
+<span class="nc" id="L98">                        FileWriter fw = new FileWriter(&quot;src/main/java/_08final/mvc/view/score.txt&quot;, true);</span>
+<span class="nc" id="L99">                        BufferedWriter bw = new BufferedWriter(fw);</span>
+<span class="nc" id="L100">                        String st = Integer.toString(s);</span>
+<span class="nc" id="L101">                        bw.append(&quot;\n&quot; + st);</span>
+<span class="nc" id="L102">                        bw.close();</span>
+<span class="nc" id="L103">                        i++;</span>
+                    }
+<span class="nc" id="L105">                } catch (Exception e) {</span>
+<span class="nc" id="L106">                    e.printStackTrace();</span>
+<span class="nc" id="L107">                }</span>
+<span class="nc" id="L108">            } else {</span>
+                try {
+<span class="nc" id="L110">                    score = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L111">                    File inputFile = new File(&quot;src/main/java/_08final/mvc/view/score.txt&quot;);</span>
+<span class="nc" id="L112">                    Scanner in = new Scanner(inputFile);</span>
+<span class="nc bnc" id="L113" title="All 2 branches missed.">                    while (in.hasNextLine()) {</span>
+<span class="nc" id="L114">                        String line = in.nextLine();</span>
+<span class="nc" id="L115">                        int num = Integer.parseInt(line);</span>
+<span class="nc" id="L116">                        score.add(num);</span>
+<span class="nc" id="L117">                    }</span>
+<span class="nc" id="L118">                    Collections.sort(score, Collections.reverseOrder());</span>
+<span class="nc" id="L119">                    in.close();</span>
+<span class="nc" id="L120">                } catch (Exception e) {</span>
+<span class="nc" id="L121">                    e.printStackTrace();</span>
+<span class="nc" id="L122">                }</span>
+<span class="nc" id="L123">                int gap = 135;</span>
+<span class="nc bnc" id="L124" title="All 2 branches missed.">                for (int i = 0; i &lt; score.size(); i++) {</span>
+<span class="nc" id="L125">                    g.drawString(&quot;&quot; + score.get(i), 5, gap);</span>
+<span class="nc" id="L126">                    gap += 20;</span>
+                }
+
+<span class="nc" id="L129">                Font originalFont = g.getFont();</span>
+<span class="nc" id="L130">                Color originalColor = g.getColor();</span>
+<span class="nc" id="L131">                g.drawString(&quot;Health: &quot;, 5, 20);</span>
+<span class="nc" id="L132">                Font scoreFont = new Font(&quot;Impact&quot;, Font.BOLD, 25);</span>
+<span class="nc" id="L133">                g.setFont(scoreFont);</span>
+<span class="nc" id="L134">                g.setColor(Color.RED);</span>
+<span class="nc" id="L135">                g.drawString(&quot;SCORE: &quot; + game.getScore(), 290, 30);</span>
+<span class="nc" id="L136">                g.setFont(originalFont);</span>
+<span class="nc" id="L137">                g.setColor(originalColor);</span>
+<span class="nc" id="L138">                Font LifeFont = new Font(&quot;Arial&quot;, Font.BOLD, 20);</span>
+<span class="nc" id="L139">                g.setFont(LifeFont);</span>
+<span class="nc" id="L140">                g.drawString(&quot;Ship Life: &quot; + game.getLife(), 5, 80);</span>
+<span class="nc" id="L141">                g.setFont(originalFont);</span>
+<span class="nc" id="L142">                g.drawString(&quot;Score List: &quot;, 5, 110);</span>
+<span class="nc" id="L143">                Font LevelFont = new Font(&quot;Courier New&quot;, Font.BOLD, 15);</span>
+<span class="nc" id="L144">                g.setFont(LevelFont);</span>
+<span class="nc" id="L145">                g.drawString(&quot;LEVEL &quot; + game.getLevel(), 600, 20);</span>
+<span class="nc" id="L146">                g.setFont(originalFont);</span>
+                //g.drawString(&quot;HIGH SCORE&quot; ,310, 20);
+                //g.setColor(Color.gray);
+                //g.fillRect(5, 25, 100, 25);
+<span class="nc" id="L150">                g.setColor(Color.green);</span>
+<span class="nc" id="L151">                g.fillRect(5, 25, game.HEALTH, 25);</span>
+                //g.setColor(Color.white);
+                //g.drawRect(5, 25, 100, 25);
+
+<span class="nc" id="L155">                sprite.draw(g);</span>
+            }
+<span class="nc" id="L157">        }</span>
+
+        // Mostrar mensaje de nivel si corresponde
+        /*if (Game.status == Game.STATUS.GAME &amp;&amp; currentLevel &gt;= 1) {
+            showLevelMessage(g, currentLevel);
+            currentLevel++;
+        }*/
+<span class="nc" id="L164">    }</span>
+
+
+    public void setRec(int p)
+    {
+<span class="nc" id="L169">        this.rectangulo+=p;</span>
+<span class="nc" id="L170">    }</span>
+    public int getRec()
+    {
+<span class="nc" id="L173">        return rectangulo;</span>
+    }
+
+    /*private void showLevelMessage(Graphics g, int level) {
+        Font levelFont = new Font(&quot;Arial&quot;, Font.BOLD, 40);
+        g.setFont(levelFont);
+        g.setColor(Color.white);
+        g.drawString(&quot;Level &quot; + level, 200, 400);  // Cambia &quot;Level 2&quot; por el mensaje que desees mostrar
+    }*/
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

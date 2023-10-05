@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RedEnemy.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Galaga</a> &gt; <a href="index.source.html" class="el_package">_08final.mvc.model.Enemys</a> &gt; <span class="el_source">RedEnemy.java</span></div><h1>RedEnemy.java</h1><pre class="source lang-java linenums">package _08final.mvc.model.Enemys;
+
+import _08final.images.SpriteTexLoader;
+import _08final.mvc.controller.Game;
+import _08final.mvc.controller.EnemyController;
+import _08final.mvc.model.Explosion;
+import _08final.mvc.model.Physics;
+import _08final.mvc.model.Sprite;
+import _08final.sounds.Sound;
+
+import java.awt.*;
+
+public class RedEnemy extends Sprite implements Enemy {
+
+<span class="nc" id="L15">    private double speed = 100.0;</span>
+    private Game game;
+    private EnemyController c;
+    private double xv;
+
+<span class="nc" id="L20">    private final static Dimension ENEMY_DIM = new Dimension(20,30);</span>
+
+    public RedEnemy(Point initPos, Game game, EnemyController c) {
+<span class="nc" id="L23">        super(initPos, ENEMY_DIM, SpriteTexLoader.load(SpriteTexLoader.SpriteTex.RED_FIGHTER));</span>
+<span class="nc" id="L24">        this.game = game;</span>
+<span class="nc" id="L25">        this.c = c;</span>
+<span class="nc" id="L26">    }</span>
+
+    @Override
+    public void InSpeed() {
+<span class="nc" id="L30">        this.speed += 50;</span>
+<span class="nc" id="L31">    }</span>
+
+    public void tick(long deltaTime, RedEnemy TempEnemy) {
+<span class="nc" id="L34">        final double MILS_TO_SECS = 0.001f;</span>
+<span class="nc" id="L35">        double deltaTimeInSecs = deltaTime * MILS_TO_SECS;</span>
+
+<span class="nc" id="L37">        int y = getY()+(int)(speed * deltaTimeInSecs);</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">        if (y &gt; 800) {</span>
+<span class="nc" id="L39">            y = 0;</span>
+        }
+<span class="nc" id="L41">        TempEnemy.setY(y);</span>
+
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        if (Physics.Collision(this, c.getBullet())) {</span>
+<span class="nc" id="L44">            Game.e1 = new Explosion(new Point(this.getX(), this.getY()), SpriteTexLoader.load(SpriteTexLoader.SpriteTex.EN_EX1));</span>
+<span class="nc" id="L45">            Game.e2 = new Explosion(new Point(this.getX(), this.getY()), SpriteTexLoader.load(SpriteTexLoader.SpriteTex.EN_EX2));</span>
+<span class="nc" id="L46">            Game.e3 = new Explosion(new Point(this.getX(), this.getY()), SpriteTexLoader.load(SpriteTexLoader.SpriteTex.EN_EX3));</span>
+<span class="nc" id="L47">            Game.e4 = new Explosion(new Point(this.getX(), this.getY()), SpriteTexLoader.load(SpriteTexLoader.SpriteTex.EN_EX4));</span>
+<span class="nc" id="L48">            Game.e5 = new Explosion(new Point(this.getX(), this.getY()), SpriteTexLoader.load(SpriteTexLoader.SpriteTex.EN_EX5));</span>
+
+<span class="nc" id="L50">            c.addEx(Game.e1);</span>
+<span class="nc" id="L51">            c.addEx(Game.e2);</span>
+<span class="nc" id="L52">            c.addEx(Game.e3);</span>
+<span class="nc" id="L53">            c.addEx(Game.e4);</span>
+<span class="nc" id="L54">            c.addEx(Game.e5);</span>
+
+<span class="nc" id="L56">            c.removeRedEnemy(this);</span>
+<span class="nc" id="L57">            c.removeBullet(c.getBullet().get(0));</span>
+        }
+
+<span class="nc bnc" id="L60" title="All 2 branches missed.">        if (Physics.Collision(this, game.mShip)) {</span>
+<span class="nc" id="L61">            c.removeRedEnemy(this);</span>
+<span class="nc" id="L62">            String s = &quot;/_08final/sounds/explosion.wav&quot;;</span>
+<span class="nc" id="L63">            Sound.playSound(s);</span>
+<span class="nc" id="L64">            Game.f1 = new Explosion(new Point(this.getX(), this.getY()), SpriteTexLoader.load(SpriteTexLoader.SpriteTex.FI_EX1));</span>
+<span class="nc" id="L65">            Game.f2 = new Explosion(new Point(this.getX(), this.getY()), SpriteTexLoader.load(SpriteTexLoader.SpriteTex.FI_EX2));</span>
+<span class="nc" id="L66">            Game.f3 = new Explosion(new Point(this.getX(), this.getY()), SpriteTexLoader.load(SpriteTexLoader.SpriteTex.FI_EX3));</span>
+<span class="nc" id="L67">            Game.f4 = new Explosion(new Point(this.getX(), this.getY()), SpriteTexLoader.load(SpriteTexLoader.SpriteTex.FI_EX4));</span>
+<span class="nc" id="L68">            Game.f5 = new Explosion(new Point(this.getX(), this.getY()), SpriteTexLoader.load(SpriteTexLoader.SpriteTex.FI_EX5));</span>
+
+<span class="nc" id="L70">            c.addEx(Game.f1);</span>
+<span class="nc" id="L71">            c.addEx(Game.f2);</span>
+<span class="nc" id="L72">            c.addEx(Game.f3);</span>
+<span class="nc" id="L73">            c.addEx(Game.f4);</span>
+<span class="nc" id="L74">            c.addEx(Game.f5);</span>
+
+<span class="nc" id="L76">            Game.HEALTH -= 50;</span>
+
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            if (Game.shipLife &lt;= 0) {</span>
+<span class="nc" id="L79">                Game.status = Game.STATUS.GAME_OVER;</span>
+            }
+
+<span class="nc bnc" id="L82" title="All 2 branches missed.">            if (Game.HEALTH &lt;= 0) {</span>
+<span class="nc" id="L83">                Game.shipLife -= 1;</span>
+<span class="nc" id="L84">                Game._sprites.remove(game.mShip);</span>
+            }
+        }
+<span class="nc" id="L87">    }</span>
+    public double getSpeed()
+    {
+<span class="nc" id="L90">        return speed;</span>
+    }
+    public Dimension getSize()
+    {
+<span class="nc" id="L94">        return ENEMY_DIM;</span>
+    }
+    public double getXV() {
+<span class="nc" id="L97">        return xv;</span>
+    }
+
+    public void setXV(double xv) {
+<span class="nc" id="L101">        this.xv = xv;</span>
+<span class="nc" id="L102">    }</span>
+    @Override
+    public void SacarMasVida(Game game, EnemyController e) {
+<span class="nc" id="L105">        game.HEALTH -=100;</span>
+<span class="nc" id="L106">    }</span>
+
+    @Override
+    public void update() {
+<span class="nc" id="L110">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

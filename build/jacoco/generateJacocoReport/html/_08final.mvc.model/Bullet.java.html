@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Bullet.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Galaga</a> &gt; <a href="index.source.html" class="el_package">_08final.mvc.model</a> &gt; <span class="el_source">Bullet.java</span></div><h1>Bullet.java</h1><pre class="source lang-java linenums">package _08final.mvc.model;
+
+import _08final.images.SpriteTexLoader;
+import _08final.mvc.controller.Game;
+
+
+import java.awt.*;
+import java.util.ArrayList;
+
+/**
+ * Created by zhuoyuzhu on 11/27/16.
+ */
+public class Bullet extends Sprite {
+
+    private ArrayList&lt;Bullet&gt; b;
+    private Game game;
+
+<span class="nc" id="L18">    private final static Dimension BULLET_DIM = new Dimension(30,50);</span>
+
+    public Bullet(Point initPos, Game game) {
+<span class="nc" id="L21">        super(initPos, BULLET_DIM, SpriteTexLoader.load(SpriteTexLoader.SpriteTex.FIGHTER_MISSILE));</span>
+<span class="nc" id="L22">        this.game = game;</span>
+<span class="nc" id="L23">    }</span>
+
+    public void tick() {
+<span class="nc" id="L26">        setY(getY()-13);</span>
+
+<span class="nc" id="L28">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EnemyController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Galaga</a> &gt; <a href="index.source.html" class="el_package">_08final.mvc.controller</a> &gt; <span class="el_source">EnemyController.java</span></div><h1>EnemyController.java</h1><pre class="source lang-java linenums">package _08final.mvc.controller;
+
+import _08final.images.SpriteTexLoader;
+import _08final.mvc.model.*;
+import _08final.mvc.model.Enemys.BlueEnemy;
+import _08final.mvc.model.Enemys.RedEnemy;
+import _08final.mvc.model.Enemys.YellowEnemy;
+import _08final.mvc.view.*;
+import _08final.sounds.Sound;
+import java.awt.*;
+import java.util.ArrayList;
+
+
+public class EnemyController extends GamePanel {
+
+    /**
+     * Red enemy score = 20
+     * Yellow enemy score = 50
+     * Blue enemy score = 100
+     */
+<span class="nc" id="L21">    private ArrayList&lt;YellowEnemy&gt; Y = new ArrayList&lt;YellowEnemy&gt;();</span>
+<span class="nc" id="L22">    private ArrayList&lt;RedEnemy&gt; R = new ArrayList&lt;RedEnemy&gt;();</span>
+<span class="nc" id="L23">    private ArrayList&lt;BlueEnemy&gt; B = new ArrayList&lt;BlueEnemy&gt;();</span>
+<span class="nc" id="L24">    private ArrayList&lt;Bullet&gt; bullet = new ArrayList&lt;Bullet&gt;();</span>
+<span class="nc" id="L25">    private ArrayList&lt;Explosion&gt; ex = new ArrayList&lt;Explosion&gt;();</span>
+<span class="nc" id="L26">    private ArrayList&lt;Ship&gt; sh = new ArrayList&lt;Ship&gt;();</span>
+
+<span class="nc" id="L28">    private final int RED_SCORE = 20;</span>
+<span class="nc" id="L29">    private final int YELLOW_SCORE = 50;</span>
+<span class="nc" id="L30">    private final int BLUE_SCORE = 100;</span>
+    private GamePanel gamePanel;
+
+    public int currentLevel;
+    public boolean levelCompleted;
+
+
+    YellowEnemy YEnemy;
+    RedEnemy REnemy;
+    BlueEnemy BEnemy;
+    Bullet TempBullet;
+    Game game;
+    Explosion e;
+    Ship s;
+
+<span class="nc" id="L45">    public EnemyController(Game game) {</span>
+<span class="nc" id="L46">        this.game = game;</span>
+<span class="nc" id="L47">        this.currentLevel = 1;</span>
+<span class="nc" id="L48">        this.levelCompleted = false;</span>
+<span class="nc" id="L49">        int x = 125;</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">        for (int i = 0; i &lt; 7; i++) {</span>
+<span class="nc" id="L51">            REnemy = new RedEnemy(new Point(x,100), game, this);</span>
+<span class="nc" id="L52">            addRedEnemy(REnemy);</span>
+<span class="nc" id="L53">            Game._sprites.add(REnemy);</span>
+<span class="nc" id="L54">            YEnemy = new YellowEnemy(new Point(x,50), game, this);</span>
+<span class="nc" id="L55">            addYellowEnemy(YEnemy);</span>
+<span class="nc" id="L56">            Game._sprites.add(YEnemy);</span>
+<span class="nc" id="L57">            BEnemy = new BlueEnemy(new Point(x,0), game, this);</span>
+<span class="nc" id="L58">            addBlueEnemy(BEnemy);</span>
+<span class="nc" id="L59">            Game._sprites.add(BEnemy);</span>
+<span class="nc" id="L60">            x += 70;</span>
+        }
+<span class="nc" id="L62">    }</span>
+
+    // Lo nuevo desde aca hasta donde marque ----------------------------------------------------------------
+    public void startNextLevel() {
+        // Incrementar el nivel actual
+<span class="nc" id="L67">        game.upLevel();</span>
+<span class="nc" id="L68">        levelCompleted = false;</span>
+<span class="nc" id="L69">        LvlN lvl = new LvlN();</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">        if(game.getLevel()&lt;=2) {</span>
+<span class="nc" id="L71">           lvl.performMov(game, this);</span>
+<span class="nc" id="L72">           lvl.EnemySpeed(game, this);</span>
+        }
+<span class="nc bnc" id="L74" title="All 4 branches missed.">        else if(game.getLevel()&gt;2 &amp;&amp; game.getLevel()&lt;=4)</span>
+        {
+<span class="nc" id="L76">            lvl.setPresentacion(new Triangulo());</span>
+<span class="nc" id="L77">            lvl.performMov(game, this);</span>
+<span class="nc" id="L78">            lvl.EnemySpeed(game, this);</span>
+        }
+<span class="nc bnc" id="L80" title="All 4 branches missed.">        else if(game.getLevel()&gt;4 &amp;&amp; game.getLevel()&lt;=6)</span>
+        {
+<span class="nc" id="L82">            lvl.setPresentacion(new Aleatorio());</span>
+<span class="nc" id="L83">            lvl.performMov(game, this);</span>
+<span class="nc" id="L84">            lvl.EnemySpeed(game, this);</span>
+        }
+<span class="nc bnc" id="L86" title="All 4 branches missed.">        else if (game.getLevel()&gt;6 &amp;&amp; game.getLevel()&lt;=10)</span>
+        {
+<span class="nc" id="L88">            lvl.setPresentacion(new Triangulo());</span>
+<span class="nc" id="L89">            lvl.performMov(game, this);</span>
+<span class="nc" id="L90">            lvl.EnemySpeed(game, this);</span>
+        }
+<span class="nc bnc" id="L92" title="All 2 branches missed.">        else if (game.getLevel()&gt;10)</span>
+        {
+<span class="nc" id="L94">            lvl.setPresentacion(new Aleatorio());</span>
+<span class="nc" id="L95">            lvl.performMov(game, this);</span>
+<span class="nc" id="L96">            lvl.EnemySpeed(game, this);</span>
+        }
+<span class="nc" id="L98">    }</span>
+
+    //--------------------------------------------------------------------------------------------
+
+    public void tick(long deltaTime) {
+<span class="nc bnc" id="L103" title="All 2 branches missed.">        for (int i = 0; i &lt; R.size(); i++) {</span>
+<span class="nc" id="L104">            REnemy = R.get(i);</span>
+<span class="nc" id="L105">            REnemy.tick(deltaTime, REnemy);</span>
+        }
+<span class="nc bnc" id="L107" title="All 2 branches missed.">        for (int i = 0; i &lt; Y.size(); i++) {</span>
+<span class="nc" id="L108">            YEnemy = Y.get(i);</span>
+<span class="nc" id="L109">            YEnemy.tick(deltaTime, YEnemy);</span>
+        }
+<span class="nc bnc" id="L111" title="All 2 branches missed.">        for (int i = 0; i &lt; B.size(); i++) {</span>
+<span class="nc" id="L112">            BEnemy = B.get(i);</span>
+<span class="nc" id="L113">            BEnemy.tick(deltaTime, BEnemy);</span>
+        }
+<span class="nc bnc" id="L115" title="All 2 branches missed.">        for (int i = 0; i &lt; bullet.size(); i++) {</span>
+<span class="nc" id="L116">            TempBullet = bullet.get(i);</span>
+
+<span class="nc bnc" id="L118" title="All 2 branches missed.">            if (TempBullet.getY() &lt; 0) {</span>
+<span class="nc" id="L119">                removeBullet(TempBullet);</span>
+            }
+<span class="nc" id="L121">            TempBullet.tick();</span>
+        }
+<span class="nc bnc" id="L123" title="All 2 branches missed.">        for (int i = 0; i &lt; ex.size(); i++) {</span>
+<span class="nc" id="L124">            e = ex.get(i);</span>
+<span class="nc" id="L125">            removeEx(e);</span>
+        }
+<span class="nc bnc" id="L127" title="All 4 branches missed.">        if (Game.shipLife &gt; 0 &amp;&amp; !Game._sprites.contains(game.mShip)) {</span>
+<span class="nc" id="L128">            game.HEALTH = 100;</span>
+<span class="nc" id="L129">            game.mShip = new Ship(new Point(600,600));</span>
+<span class="nc" id="L130">            Game._sprites.add(game.mShip);</span>
+        }
+<span class="nc bnc" id="L132" title="All 2 branches missed.">        if (Game.shipLife == 0) {</span>
+<span class="nc" id="L133">            Game.status = Game.STATUS.GAME_OVER;</span>
+        }
+
+        //-----------------------------------------------------------
+
+
+<span class="nc bnc" id="L139" title="All 6 branches missed.">        if (R.isEmpty() &amp;&amp; Y.isEmpty() &amp;&amp; B.isEmpty()) {</span>
+<span class="nc" id="L140">            levelCompleted = true;</span>
+            //completedLevel = currentLevel;
+
+        }
+<span class="nc bnc" id="L144" title="All 2 branches missed.">        if (levelCompleted) {</span>
+<span class="nc" id="L145">            startNextLevel(); // Inicia el siguiente nivel</span>
+        }
+        //-----------------------------------------------------------
+<span class="nc" id="L148">    }</span>
+
+    public void addYellowEnemy(YellowEnemy newEnemy) {
+<span class="nc" id="L151">        Y.add(newEnemy);</span>
+<span class="nc" id="L152">    }</span>
+
+    public void removeYellowEnemy(YellowEnemy finishedEnemy) {
+<span class="nc" id="L155">        Y.remove(finishedEnemy);</span>
+<span class="nc" id="L156">        Game._sprites.remove(finishedEnemy);</span>
+
+<span class="nc" id="L158">        String s = &quot;/_08final/sounds/enemyKilled.wav&quot;;</span>
+<span class="nc" id="L159">        Sound.playSound(s);</span>
+<span class="nc" id="L160">        game.setScore(YELLOW_SCORE);</span>
+<span class="nc" id="L161">    }</span>
+
+    public void addRedEnemy(RedEnemy newEnemy) {
+<span class="nc" id="L164">        R.add(newEnemy);</span>
+<span class="nc" id="L165">    }</span>
+
+    public void removeRedEnemy(RedEnemy finishedEnemy) {
+<span class="nc" id="L168">        R.remove(finishedEnemy);</span>
+<span class="nc" id="L169">        Game._sprites.remove(finishedEnemy);</span>
+
+<span class="nc" id="L171">        String s = &quot;/_08final/sounds/enemyKilled.wav&quot;;</span>
+<span class="nc" id="L172">        Sound.playSound(s);</span>
+<span class="nc" id="L173">        game.setScore(RED_SCORE);</span>
+<span class="nc" id="L174">    }</span>
+
+    public void addBlueEnemy(BlueEnemy newEnemy) {
+<span class="nc" id="L177">        B.add(newEnemy);</span>
+<span class="nc" id="L178">    }</span>
+
+    public void removeBlueEnemy(BlueEnemy finishedEnemy) {
+<span class="nc" id="L181">        B.remove(finishedEnemy);</span>
+<span class="nc" id="L182">        Game._sprites.remove(finishedEnemy);</span>
+
+<span class="nc" id="L184">        String s = &quot;/_08final/sounds/enemyKilled.wav&quot;;</span>
+<span class="nc" id="L185">        Sound.playSound(s);</span>
+<span class="nc" id="L186">        game.setScore(BLUE_SCORE);</span>
+<span class="nc" id="L187">    }</span>
+
+    public ArrayList&lt;RedEnemy&gt; getRed() {
+<span class="nc" id="L190">        return R;</span>
+    }
+
+    public ArrayList&lt;YellowEnemy&gt; getYellow() {
+<span class="nc" id="L194">        return Y;</span>
+    }
+    public ArrayList&lt;BlueEnemy&gt; getBlue() {
+<span class="nc" id="L197">        return B;</span>
+    }
+
+    public void addBullet(Bullet newBullet) {
+<span class="nc" id="L201">        bullet.add(newBullet);</span>
+<span class="nc" id="L202">        Game._sprites.add(newBullet);</span>
+<span class="nc" id="L203">    }</span>
+
+    public void removeBullet(Bullet finishedBullet) {
+<span class="nc" id="L206">        bullet.remove(finishedBullet);</span>
+<span class="nc" id="L207">        Game._sprites.remove(finishedBullet);</span>
+<span class="nc" id="L208">    }</span>
+    public void removeEx(Explosion e) {
+<span class="nc" id="L210">        ex.remove(e);</span>
+<span class="nc" id="L211">        Game._sprites.remove(e);</span>
+<span class="nc" id="L212">    }</span>
+
+
+    public ArrayList&lt;Bullet&gt; getBullet() {
+<span class="nc" id="L216">        return bullet;</span>
+    }
+
+
+    public void addEx(Explosion e) {
+<span class="nc" id="L221">        ex.add(e);</span>
+<span class="nc" id="L222">        Game._sprites.add(e);</span>
+<span class="nc" id="L223">    }</span>
+
+
+    public void addEx(Ship s) {
+<span class="nc" id="L227">        sh.add(s);</span>
+<span class="nc" id="L228">        Game._sprites.add(s);</span>
+<span class="nc" id="L229">    }</span>
+
+    public void removeEx(Ship s) {
+<span class="nc" id="L232">        sh.remove(s);</span>
+<span class="nc" id="L233">        Game._sprites.remove(s);</span>
+<span class="nc" id="L234">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

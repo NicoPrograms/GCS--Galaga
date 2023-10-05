@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SpriteTexLoader.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Galaga</a> &gt; <a href="index.source.html" class="el_package">_08final.images</a> &gt; <span class="el_source">SpriteTexLoader.java</span></div><h1>SpriteTexLoader.java</h1><pre class="source lang-java linenums">package _08final.images;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+/**
+ * This class easily loads the textures for the sprites in the game
+ *
+ * @version  1.0
+ * @author Lamont Samuels
+ * @since  11-13-16
+ */
+
+public class SpriteTexLoader {
+
+<span class="fc" id="L17">    private static SpriteTexLoader sInstance = new SpriteTexLoader();</span>
+
+<span class="fc" id="L19">    public enum SpriteTex {</span>
+<span class="fc" id="L20">        SHIP,</span>
+<span class="fc" id="L21">        BACKGROUND,</span>
+<span class="fc" id="L22">        FIGHTER_MISSILE,</span>
+<span class="fc" id="L23">        ENEMY_MISSILE,</span>
+<span class="fc" id="L24">        RED_FIGHTER,</span>
+<span class="fc" id="L25">        YELLOW_FIGHTER,</span>
+<span class="fc" id="L26">        BLUE_FIGHTER,</span>
+        //GREEN_BOSS,
+<span class="fc" id="L28">        PINK_BOSS,</span>
+<span class="fc" id="L29">        GALAGA,</span>
+<span class="fc" id="L30">        EN_EX1,</span>
+<span class="fc" id="L31">        EN_EX2,</span>
+<span class="fc" id="L32">        EN_EX3,</span>
+<span class="fc" id="L33">        EN_EX4,</span>
+<span class="fc" id="L34">        EN_EX5,</span>
+<span class="fc" id="L35">        FI_EX1,</span>
+<span class="fc" id="L36">        FI_EX2,</span>
+<span class="fc" id="L37">        FI_EX3,</span>
+<span class="fc" id="L38">        FI_EX4,</span>
+<span class="fc" id="L39">        FI_EX5,</span>
+<span class="fc" id="L40">        BACKGROUND2,</span>
+<span class="fc" id="L41">        BACKGROUND3,</span>
+    }
+
+    private SpriteTexLoader() {}
+    /**
+     * Retrieves the file path for the a Sprite texture in the images file
+     * @param sprite - the sprite file path to retrieve
+     */
+    private static String getSpriteFile(SpriteTex sprite) {
+
+<span class="fc" id="L51">        String file = &quot;&quot;;</span>
+<span class="pc bpc" id="L52" title="20 of 21 branches missed.">        switch (sprite) {</span>
+            case GALAGA:
+<span class="nc" id="L54">                file = &quot;Galaga.png&quot;;</span>
+<span class="nc" id="L55">                break;</span>
+            case BACKGROUND:
+<span class="nc" id="L57">                file = &quot;background.png&quot;;</span>
+<span class="nc" id="L58">                break;</span>
+            case SHIP:
+<span class="fc" id="L60">                file = &quot;ship.png&quot;;</span>
+<span class="fc" id="L61">                break;</span>
+            case YELLOW_FIGHTER:
+<span class="nc" id="L63">                file = &quot;yellow_fighter.png&quot;;</span>
+<span class="nc" id="L64">                break;</span>
+            case RED_FIGHTER:
+<span class="nc" id="L66">                file = &quot;red_fighter.png&quot;;</span>
+<span class="nc" id="L67">                break;</span>
+            case FIGHTER_MISSILE:
+<span class="nc" id="L69">                file = &quot;fighter_missile.png&quot;;</span>
+<span class="nc" id="L70">                break;</span>
+            case ENEMY_MISSILE:
+<span class="nc" id="L72">                file = &quot;enemy_missile.png&quot;;</span>
+<span class="nc" id="L73">                break;</span>
+            case BLUE_FIGHTER:
+<span class="nc" id="L75">                file = &quot;blue_fighter.png&quot;;</span>
+<span class="nc" id="L76">                break;</span>
+            case EN_EX1:
+<span class="nc" id="L78">                file = &quot;enemy_explosion_1.png&quot;;</span>
+<span class="nc" id="L79">                break;</span>
+            case EN_EX2:
+<span class="nc" id="L81">                file = &quot;enemy_explosion_2.png&quot;;</span>
+<span class="nc" id="L82">                break;</span>
+            case EN_EX3:
+<span class="nc" id="L84">                file = &quot;enemy_explosion_3.png&quot;;</span>
+<span class="nc" id="L85">                break;</span>
+            case EN_EX4:
+<span class="nc" id="L87">                file = &quot;enemy_explosion_4.png&quot;;</span>
+<span class="nc" id="L88">                break;</span>
+            case EN_EX5:
+<span class="nc" id="L90">                file = &quot;enemy_explosion_5.png&quot;;</span>
+<span class="nc" id="L91">                break;</span>
+            case FI_EX1:
+<span class="nc" id="L93">                file = &quot;fighter_explosion_1.png&quot;;</span>
+<span class="nc" id="L94">                break;</span>
+            case FI_EX2:
+<span class="nc" id="L96">                file = &quot;fighter_explosion_2.png&quot;;</span>
+<span class="nc" id="L97">                break;</span>
+            case FI_EX3:
+<span class="nc" id="L99">                file = &quot;fighter_explosion_3.png&quot;;</span>
+<span class="nc" id="L100">                break;</span>
+            case FI_EX4:
+<span class="nc" id="L102">                file = &quot;fighter_explosion_4.png&quot;;</span>
+<span class="nc" id="L103">                break;</span>
+            case FI_EX5:
+<span class="nc" id="L105">                file = &quot;fighter_explosion_5.png&quot;;</span>
+<span class="nc" id="L106">                break;</span>
+            case BACKGROUND2:
+<span class="nc" id="L108">                file = &quot;background_level2.png&quot;;</span>
+<span class="nc" id="L109">                break;</span>
+            case BACKGROUND3:
+<span class="nc" id="L111">                file= &quot;background_level3.png&quot;;</span>
+                break;
+        }
+<span class="fc" id="L114">        return file;</span>
+    }
+
+    /**
+     * Returns a buffered image from the images directory of a particular sprite
+     * @param sprite - the sprite texture to load
+     * @throws IOException
+     * @throws IllegalArgumentException
+     */
+    public static BufferedImage load(SpriteTex sprite)  throws IllegalArgumentException {
+
+<span class="pc bpc" id="L125" title="1 of 2 branches missed.">        if (sprite == null){</span>
+<span class="nc" id="L126">            throw new IllegalArgumentException(&quot;Sprite texture parameter must not be null&quot;);</span>
+        }
+<span class="fc" id="L128">        BufferedImage img = null;</span>
+        try {
+<span class="fc" id="L130">            String file = getSpriteFile(sprite);</span>
+<span class="fc" id="L131">            img = ImageIO.read(sInstance.getClass().getResource(&quot;/&quot; + file));</span>
+<span class="nc" id="L132">        }catch (IOException e){</span>
+<span class="nc" id="L133">            System.out.print(&quot;Could not open texture :&quot; + sprite.toString());</span>
+<span class="nc" id="L134">            System.exit(1);</span>
+<span class="fc" id="L135">        }</span>
+<span class="fc" id="L136">        return img;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

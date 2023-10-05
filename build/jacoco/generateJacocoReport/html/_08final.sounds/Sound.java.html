@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Sound.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Galaga</a> &gt; <a href="index.source.html" class="el_package">_08final.sounds</a> &gt; <span class="el_source">Sound.java</span></div><h1>Sound.java</h1><pre class="source lang-java linenums">package _08final.sounds;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.sound.sampled.*;
+
+<span class="nc" id="L9">public class Sound {</span>
+<span class="nc" id="L10">	private static float volume = 0.5f;</span>
+
+    /**
+     * Plays an individual sound file once.
+     * @param strPath the path to the sound file.
+     * @cite: http://stackoverflow.com/questions/26305/how-can-i-play-sound-in-java
+     * */
+	public static synchronized void playSound(final String strPath) {
+<span class="nc" id="L18">	    new Thread(new Runnable() {</span>
+	      public void run() {
+	        try {
+<span class="nc" id="L21">	          Clip clp = AudioSystem.getClip();</span>
+
+<span class="nc" id="L23">	          AudioInputStream aisStream =</span>
+<span class="nc" id="L24">					  AudioSystem.getAudioInputStream(Sound.class.getResourceAsStream(strPath));</span>
+<span class="nc" id="L25">	          clp.open(aisStream);</span>
+
+<span class="nc" id="L27">			  setVolume(clp);</span>
+
+<span class="nc" id="L29">	          clp.start();</span>
+<span class="nc" id="L30">	        } catch (Exception e) {</span>
+<span class="nc" id="L31">	          System.err.println(e.getMessage());</span>
+<span class="nc" id="L32">	        }</span>
+<span class="nc" id="L33">	      }</span>
+<span class="nc" id="L34">	    }).start();</span>
+<span class="nc" id="L35">	  }</span>
+
+
+    /**
+     * Continuously plays a sound file.
+     * @param strPath the path to the sound file.
+     * @cite: http://stackoverflow.com/questions/4875080/music-loop-in-java
+     * */
+	public static Clip clipForLoopFactory(String strPath){
+
+<span class="nc" id="L45">		Clip clp = null;</span>
+
+		// this line caused the original exceptions
+		try {
+<span class="nc" id="L49">			AudioInputStream aisStream =</span>
+<span class="nc" id="L50">					  AudioSystem.getAudioInputStream(Sound.class.getResourceAsStream(strPath));</span>
+<span class="nc" id="L51">			clp = AudioSystem.getClip();</span>
+<span class="nc" id="L52">		    clp.open( aisStream );</span>
+<span class="nc" id="L53">			setVolume(clp);</span>
+
+<span class="nc" id="L55">		} catch (UnsupportedAudioFileException exp) {</span>
+<span class="nc" id="L56">			exp.printStackTrace();</span>
+<span class="nc" id="L57">		} catch(Exception exp){</span>
+<span class="nc" id="L58">			System.out.println(&quot;error&quot;);</span>
+<span class="nc" id="L59">		}</span>
+
+<span class="nc" id="L61">		return clp;</span>
+
+	}
+
+	public static void setVolume(float value) {
+<span class="nc" id="L66">		volume = value;</span>
+<span class="nc" id="L67">	}</span>
+
+	private static void setVolume(Clip clip) {
+<span class="nc bnc" id="L70" title="All 2 branches missed.">		if (clip.isControlSupported(FloatControl.Type.MASTER_GAIN)) {</span>
+<span class="nc" id="L71">			FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);</span>
+<span class="nc" id="L72">			float dB = (float) (Math.log(volume) / Math.log(10.0) * 20.0);</span>
+<span class="nc" id="L73">			gainControl.setValue(dB);</span>
+		}
+<span class="nc" id="L75">	}</span>
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

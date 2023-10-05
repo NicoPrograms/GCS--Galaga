@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Physics.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Galaga</a> &gt; <a href="index.source.html" class="el_package">_08final.mvc.model</a> &gt; <span class="el_source">Physics.java</span></div><h1>Physics.java</h1><pre class="source lang-java linenums">package _08final.mvc.model;
+
+import _08final.mvc.model.Enemys.BlueEnemy;
+import _08final.mvc.model.Enemys.RedEnemy;
+import _08final.mvc.model.Enemys.YellowEnemy;
+
+import java.util.ArrayList;
+
+/**
+ * Created by zhuoyuzhu on 12/7/16.
+ */
+<span class="nc" id="L12">public class Physics {</span>
+
+    public static boolean Collision(Ship s, ArrayList&lt;RedEnemy&gt; r) {
+<span class="nc bnc" id="L15" title="All 2 branches missed.">        for (int i = 0; i &lt; r.size(); i++) {</span>
+<span class="nc bnc" id="L16" title="All 2 branches missed.">            if (s.getBounds().intersects(r.get(i).getBounds())) {</span>
+<span class="nc" id="L17">                return true;</span>
+            }
+        }
+<span class="nc" id="L20">        return false;</span>
+    }
+
+    public static boolean Collision(RedEnemy r, ArrayList&lt;Bullet&gt; b) {
+<span class="nc bnc" id="L24" title="All 2 branches missed.">        for (int i = 0; i &lt; b.size(); i++) {</span>
+<span class="nc bnc" id="L25" title="All 2 branches missed.">            if (r.getBounds().intersects(b.get(i).getBounds())) {</span>
+<span class="nc" id="L26">                return true;</span>
+            }
+        }
+<span class="nc" id="L29">        return false;</span>
+    }
+
+    public static boolean Collision(RedEnemy r, Ship s) {
+<span class="nc bnc" id="L33" title="All 2 branches missed.">        if (r.getBounds().intersects(s.getBounds())) {</span>
+<span class="nc" id="L34">            return true;</span>
+        }
+<span class="nc" id="L36">        return false;</span>
+    }
+
+    public static boolean Collision(YellowEnemy y, ArrayList&lt;Bullet&gt; b) {
+<span class="nc bnc" id="L40" title="All 2 branches missed.">        for (int i = 0; i &lt; b.size(); i++) {</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">            if (y.getBounds().intersects(b.get(i).getBounds())) {</span>
+<span class="nc" id="L42">                return true;</span>
+            }
+        }
+<span class="nc" id="L45">        return false;</span>
+    }
+
+    public static boolean Collision(YellowEnemy y, Ship s) {
+<span class="nc bnc" id="L49" title="All 2 branches missed.">        if (y.getBounds().intersects(s.getBounds())) {</span>
+<span class="nc" id="L50">            return true;</span>
+        }
+<span class="nc" id="L52">        return false;</span>
+    }
+
+    public static boolean Collision(BlueEnemy bl, ArrayList&lt;Bullet&gt; b) {
+<span class="nc bnc" id="L56" title="All 2 branches missed.">        for (int i = 0; i &lt; b.size(); i++) {</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">            if (bl.getBounds().intersects(b.get(i).getBounds())) {</span>
+<span class="nc" id="L58">                return true;</span>
+            }
+        }
+<span class="nc" id="L61">        return false;</span>
+    }
+
+    public static boolean Collision(BlueEnemy bl, Ship s) {
+<span class="nc bnc" id="L65" title="All 2 branches missed.">        if (bl.getBounds().intersects(s.getBounds())) {</span>
+<span class="nc" id="L66">            return true;</span>
+        }
+<span class="nc" id="L68">        return false;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

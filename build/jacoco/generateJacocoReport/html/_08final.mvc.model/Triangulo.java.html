@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Triangulo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Galaga</a> &gt; <a href="index.source.html" class="el_package">_08final.mvc.model</a> &gt; <span class="el_source">Triangulo.java</span></div><h1>Triangulo.java</h1><pre class="source lang-java linenums">package _08final.mvc.model;
+
+import _08final.mvc.controller.EnemyController;
+import _08final.mvc.controller.Game;
+import _08final.mvc.model.Enemys.BlueEnemy;
+import _08final.mvc.model.Enemys.RedEnemy;
+import _08final.mvc.model.Enemys.YellowEnemy;
+import java.awt.*;
+
+<span class="nc" id="L10">public class Triangulo implements PresentacionNaves{</span>
+
+    @Override
+    public void Movimiento(Game game, EnemyController e) {
+        YellowEnemy YEnemy;
+        RedEnemy REnemy;
+        BlueEnemy BEnemy;
+
+<span class="nc" id="L18">        int numRows = 4;  // NÃºmero de filas del triÃ¡ngulo</span>
+<span class="nc" id="L19">        int startX = 220;  // PosiciÃ³n inicial en el eje X</span>
+<span class="nc" id="L20">        int startY = 100;  // PosiciÃ³n inicial en el eje Y</span>
+<span class="nc" id="L21">        int spacingX = 70;  // Espaciado entre enemigos en el eje X</span>
+<span class="nc" id="L22">        int spacingY = 50;  // Espaciado entre enemigos en el eje Y</span>
+
+<span class="nc bnc" id="L24" title="All 2 branches missed.">        for (int row = 0; row &lt; numRows; row++) {</span>
+<span class="nc" id="L25">            int numEnemiesInRow = numRows - row;</span>
+<span class="nc" id="L26">            int rowX = startX + row * spacingX / 2;</span>
+<span class="nc" id="L27">            int rowY = startY + row * spacingY;</span>
+
+<span class="nc bnc" id="L29" title="All 2 branches missed.">            for (int i = 0; i &lt; numEnemiesInRow; i++) {</span>
+<span class="nc" id="L30">                REnemy = new RedEnemy(new Point(rowX + i * spacingX, rowY), game, e);</span>
+<span class="nc" id="L31">                e.addRedEnemy(REnemy);</span>
+<span class="nc" id="L32">                Game._sprites.add(REnemy);</span>
+
+<span class="nc" id="L34">                YEnemy = new YellowEnemy(new Point(rowX + i * spacingX, rowY + spacingY), game, e);</span>
+<span class="nc" id="L35">                e.addYellowEnemy(YEnemy);</span>
+<span class="nc" id="L36">                Game._sprites.add(YEnemy);</span>
+
+<span class="nc" id="L38">                BEnemy = new BlueEnemy(new Point(rowX + i * spacingX, rowY + 2 * spacingY), game, e);</span>
+<span class="nc" id="L39">                e.addBlueEnemy(BEnemy);</span>
+<span class="nc" id="L40">                Game._sprites.add(BEnemy);</span>
+            }
+        }
+
+
+<span class="nc" id="L45">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

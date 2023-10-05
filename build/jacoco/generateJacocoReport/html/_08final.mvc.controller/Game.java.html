@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Game.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Galaga</a> &gt; <a href="index.source.html" class="el_package">_08final.mvc.controller</a> &gt; <span class="el_source">Game.java</span></div><h1>Game.java</h1><pre class="source lang-java linenums">package _08final.mvc.controller;
+
+/**
+ * Created by zhuoyuzhu on 11/26/16.
+ */
+import _08final.mvc.model.*;
+import _08final.mvc.model.Enemys.BlueEnemy;
+import _08final.mvc.model.Enemys.RedEnemy;
+import _08final.mvc.model.Enemys.YellowEnemy;
+import _08final.mvc.view.GameFrame;
+import _08final.mvc.view.GamePanel;
+import _08final.mvc.view.Game_Sub;
+import _08final.mvc.view.MenuPanel;
+import _08final.sounds.Sound;
+
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.ArrayList;
+
+
+public class Game implements Runnable, KeyListener {
+
+    /** Represents the JFrame for the game */
+    private GameFrame mGameFrame;
+    //MenuPanel mp = new MenuPanel();
+
+    /** Represents the Animation delay between frames */
+    public final static int DRAW_DELAY = 45;
+
+    /** The thread that handles the render loop for the game */
+    private Thread mRenderThread;
+
+    /** Represents the ship in the game */
+    public Ship mShip;
+
+    /** */
+<span class="nc" id="L38">    private boolean isShooting = false;</span>
+    private GamePanel gamePanel;
+
+    /** List of Sprites that need to be rendered  */
+<span class="nc" id="L42">    public static ArrayList&lt;Sprite&gt; _sprites = new ArrayList&lt;Sprite&gt;();</span>
+
+    public static ArrayList&lt;RedEnemy&gt; er;
+    public static ArrayList&lt;YellowEnemy&gt; ey;
+    public static ArrayList&lt;BlueEnemy&gt; eb;
+
+    private double deltaTimeInSecs;
+    public static int score;
+<span class="nc" id="L50">    public static int level = 1;</span>
+<span class="nc" id="L51">    public static int shipLife = 3;</span>
+    private EnemyController ec;
+    public static Explosion e1;
+    public static Explosion e2;
+    public static Explosion e3;
+    public static Explosion e4;
+    public static Explosion e5;
+    public static Explosion f1;
+    public static Explosion f2;
+    public static Explosion f3;
+    public static Explosion f4;
+    public static Explosion f5;
+<span class="nc" id="L63">    public static int HEALTH = 100;</span>
+
+
+
+<span class="nc" id="L67">    public Game() {</span>
+
+<span class="nc" id="L69">        this.mGameFrame = new GameFrame(this);</span>
+<span class="nc" id="L70">        this.mShip = new Ship(new Point(400,800));</span>
+<span class="nc" id="L71">        Game._sprites.add(mShip);</span>
+
+<span class="nc" id="L73">        this.ec = new EnemyController(this);</span>
+<span class="nc" id="L74">        er = ec.getRed();</span>
+<span class="nc" id="L75">        ey = ec.getYellow();</span>
+<span class="nc" id="L76">        eb = ec.getBlue();</span>
+
+<span class="nc bnc" id="L78" title="All 2 branches missed.">        if (Game.status == STATUS.MENU) {</span>
+            try{
+<span class="nc" id="L80">                String s = &quot;/_08final/sounds/themeSong.wav&quot;;</span>
+<span class="nc" id="L81">                Sound.playSound(s);</span>
+<span class="nc" id="L82">            }catch(Exception e) {</span>
+<span class="nc" id="L83">                e.printStackTrace();</span>
+<span class="nc" id="L84">            }</span>
+        }
+<span class="nc" id="L86">    }</span>
+
+<span class="nc" id="L88">    public enum STATUS{</span>
+<span class="nc" id="L89">        MENU,</span>
+<span class="nc" id="L90">        GAME,</span>
+<span class="nc" id="L91">        HELP,</span>
+<span class="nc" id="L92">        ENEMY_EXPLOSION,</span>
+<span class="nc" id="L93">        GAME_OVER</span>
+    };
+
+<span class="nc" id="L96">    public static STATUS status = STATUS.MENU;</span>
+
+    public static int getScore() {
+<span class="nc" id="L99">        return score;</span>
+    }
+
+    public void upLevel() {
+<span class="nc" id="L103">        level++;</span>
+<span class="nc" id="L104">    }</span>
+
+    public static int getLevel() {
+<span class="nc" id="L107">        return level;</span>
+    }
+
+    public void setScore(int bonus) {
+<span class="nc" id="L111">        score += bonus;</span>
+<span class="nc" id="L112">    }</span>
+
+    public static int getLife() {
+<span class="nc" id="L115">        return shipLife;</span>
+    }
+
+<span class="nc" id="L118">    public void setLife(int life) { shipLife += life; }</span>
+
+<span class="nc" id="L120">    public void increaseHealth(int amount) { HEALTH += amount; }</span>
+
+<span class="nc" id="L122">    public int getHealth() { return HEALTH; }</span>
+
+    /**
+     * Starts the thread that will handle the render loop for the game
+     */
+    private void startRenderLoopThread() {
+        //Check to make sure the render loop thread has not begun
+<span class="nc bnc" id="L129" title="All 2 branches missed.">        if (this.mRenderThread == null) {</span>
+            //All threads that are created in java need to be passed a Runnable object.
+            //In this case we are making the &quot;Runnable Object&quot; the actual game instance.
+<span class="nc" id="L132">            this.mRenderThread = new Thread(this);</span>
+            //Start the thread
+<span class="nc" id="L134">            this.mRenderThread.start();</span>
+        }
+<span class="nc" id="L136">    }</span>
+
+    /**
+     * This represents the method that will be called for a Runnable object when a thread starts.
+     * In this case, this run method represents the render loop.
+     */
+    public void run() {
+
+        //Make this thread a low priority such that the main thread of the Event Dispatch is always is
+        //running first.
+<span class="nc" id="L146">        this.mRenderThread.setPriority(Thread.MIN_PRIORITY);</span>
+
+        //Get the current time of rendering this frame
+<span class="nc" id="L149">        long elapsedTime = System.currentTimeMillis();</span>
+
+<span class="nc" id="L151">        long currentTime = 0;</span>
+<span class="nc" id="L152">        long lastTime = 0;</span>
+<span class="nc" id="L153">        long deltaTime = 0;</span>
+
+<span class="nc" id="L155">        Game_Sub game_Sub = new Game_Sub();</span>
+<span class="nc" id="L156">        Game_Obs game_Obs = new Game_Obs(game_Sub);</span>
+        // this thread animates the scene
+<span class="nc bnc" id="L158" title="All 2 branches missed.">        while (Thread.currentThread() == this.mRenderThread) {</span>
+
+<span class="nc" id="L160">            game_Sub.incrementHealth(25);</span>
+<span class="nc" id="L161">            game_Sub.incremetShipLife(1, this);</span>
+
+<span class="nc" id="L163">            currentTime = System.currentTimeMillis();</span>
+
+<span class="nc bnc" id="L165" title="All 2 branches missed.">            if(lastTime == 0){</span>
+<span class="nc" id="L166">                lastTime = currentTime;</span>
+<span class="nc" id="L167">                deltaTime = 0;</span>
+            }else {
+<span class="nc" id="L169">                deltaTime = currentTime - lastTime;</span>
+<span class="nc" id="L170">                lastTime = currentTime;</span>
+<span class="nc" id="L171">                tick(deltaTime);</span>
+            }
+
+            /***** Update game HERE
+             * - Move the game models
+             * - Check for collisions between the bullet, or fighters and the ship
+             * - Check whether we should move to a new level potentially.
+             * Do the update about enemy and ship status
+             */
+
+            //Redraw the game frame with to visually show the updated game state.
+<span class="nc" id="L182">            this.mGameFrame.draw();</span>
+
+            try {
+                /** We want to ensure that the drawing time is at least the DRAW_DELAY we specified. */
+<span class="nc" id="L186">                elapsedTime += DRAW_DELAY;</span>
+<span class="nc" id="L187">                Thread.sleep(Math.max(0, elapsedTime - currentTime));</span>
+<span class="nc" id="L188">            } catch (InterruptedException e) {</span>
+                //If an interrupt occurs then you can just skip this current frame.
+<span class="nc" id="L190">                continue;</span>
+<span class="nc" id="L191">            }</span>
+        }
+<span class="nc" id="L193">    }</span>
+
+
+    private void tick(long deltaTime) {
+<span class="nc bnc" id="L197" title="All 2 branches missed.">        if (status == STATUS.GAME) {</span>
+<span class="nc" id="L198">            mShip.tick(deltaTime);</span>
+<span class="nc" id="L199">            ec.tick(deltaTime);</span>
+        }
+<span class="nc" id="L201">    }</span>
+
+
+    /*
+     * Generates all the drawable sprites for the game currently
+     * @return an arraylist of all the drawable sprites in the game
+     */
+    public static ArrayList&lt;Sprite&gt; getDrawableSprites() {
+<span class="nc" id="L209">        return new ArrayList&lt;Sprite&gt;(_sprites);</span>
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+<span class="nc" id="L214">        int nKey = e.getKeyCode();</span>
+<span class="nc bnc" id="L215" title="All 2 branches missed.">        if (status == STATUS.GAME) {</span>
+<span class="nc bnc" id="L216" title="All 7 branches missed.">            switch (nKey) {</span>
+                case KeyEvent.VK_LEFT:
+<span class="nc" id="L218">                    this.mShip.moveLeft(1);</span>
+<span class="nc" id="L219">                    break;</span>
+                case KeyEvent.VK_RIGHT:
+<span class="nc" id="L221">                    this.mShip.moveRight(1);</span>
+<span class="nc" id="L222">                    break;</span>
+                case KeyEvent.VK_DOWN:
+<span class="nc" id="L224">                    this.mShip.moveDown(1);</span>
+<span class="nc" id="L225">                    break;</span>
+                case KeyEvent.VK_UP:
+<span class="nc" id="L227">                    this.mShip.moveUp(1);</span>
+<span class="nc" id="L228">                    break;</span>
+                case KeyEvent.VK_SPACE:
+                    // Force the user to release the space bar before shooting again
+<span class="nc bnc" id="L231" title="All 2 branches missed.">                    if (!isShooting) {</span>
+<span class="nc" id="L232">                        isShooting = true;</span>
+<span class="nc" id="L233">                        ec.addBullet(new Bullet(new Point(mShip.getX(), mShip.getY()), this));</span>
+<span class="nc" id="L234">                        String s = &quot;/_08final/sounds/firing.wav&quot;;</span>
+<span class="nc" id="L235">                        Sound.playSound(s);</span>
+<span class="nc" id="L236">                    }</span>
+                    break;
+                default:
+<span class="nc" id="L239">                    System.out.println(&quot;Pressing the key: &quot; + KeyEvent.getKeyText(nKey));</span>
+<span class="nc" id="L240">                    break;</span>
+                case KeyEvent.VK_ESCAPE:
+<span class="nc" id="L242">                    Game.status = STATUS.MENU;</span>
+<span class="nc" id="L243">                    break;</span>
+            }
+        }
+        else {
+<span class="nc bnc" id="L247" title="All 7 branches missed.">            switch (nKey) {</span>
+                case KeyEvent.VK_P:
+<span class="nc" id="L249">                    Game.status = STATUS.GAME;</span>
+<span class="nc" id="L250">                    break;</span>
+                case KeyEvent.VK_H:
+<span class="nc" id="L252">                    Game.status = STATUS.HELP;</span>
+<span class="nc" id="L253">                    break;</span>
+                case KeyEvent.VK_Q:
+<span class="nc" id="L255">                    System.exit(1);</span>
+<span class="nc" id="L256">                    break;</span>
+                case KeyEvent.VK_ESCAPE:
+<span class="nc" id="L258">                    Game.status = STATUS.MENU;</span>
+<span class="nc" id="L259">                    break;</span>
+                case KeyEvent.VK_I: // Flecha hacia arriba
+<span class="nc" id="L261">                    mGameFrame.increaseVolume();</span>
+<span class="nc" id="L262">                    break;</span>
+                case KeyEvent.VK_D: // Flecha hacia abajo
+<span class="nc" id="L264">                    mGameFrame.decreaseVolume();</span>
+<span class="nc" id="L265">                    break;</span>
+                default:
+<span class="nc" id="L267">                    System.out.println(&quot;Pressing the key: &quot; + KeyEvent.getKeyText(nKey));</span>
+                    break;
+            }
+        }
+
+<span class="nc" id="L272">    }</span>
+
+
+    public void keyReleased(KeyEvent e) {
+<span class="nc" id="L276">        int nKey = e.getKeyCode();</span>
+
+<span class="nc bnc" id="L278" title="All 6 branches missed.">        switch (nKey) {</span>
+            case KeyEvent.VK_LEFT:
+<span class="nc" id="L280">                this.mShip.moveLeft(0);</span>
+<span class="nc" id="L281">                break;</span>
+            case KeyEvent.VK_RIGHT:
+<span class="nc" id="L283">                this.mShip.moveRight(0);</span>
+<span class="nc" id="L284">                break;</span>
+            case KeyEvent.VK_DOWN:
+<span class="nc" id="L286">                this.mShip.moveDown(0);</span>
+<span class="nc" id="L287">                break;</span>
+            case KeyEvent.VK_UP:
+<span class="nc" id="L289">                this.mShip.moveUp(0);</span>
+<span class="nc" id="L290">                break;</span>
+            case KeyEvent.VK_SPACE:
+<span class="nc" id="L292">                isShooting = false;</span>
+<span class="nc" id="L293">                break;</span>
+            default:
+<span class="nc" id="L295">                System.out.println(&quot;Pressing the key: &quot; + KeyEvent.getKeyText(nKey));</span>
+                break;
+        }
+<span class="nc" id="L298">    }</span>
+<span class="nc" id="L299">    public void keyTyped(KeyEvent e) {}</span>
+
+    public static void main(String args[]) {
+        // Create a thread that will not affect main thread
+<span class="nc" id="L303">        EventQueue.invokeLater(new Runnable() { // uses the Event dispatch thread from Java 5 (refactored)</span>
+            public void run() {
+                try {
+                    //Construct the game controller
+<span class="nc" id="L307">                    Game game = new Game();</span>
+                    //Start the render loop for the game
+<span class="nc" id="L309">                    game.startRenderLoopThread();</span>
+<span class="nc" id="L310">                } catch (Exception e) {</span>
+<span class="nc" id="L311">                    e.printStackTrace();</span>
+<span class="nc" id="L312">                }</span>
+<span class="nc" id="L313">            }</span>
+        });
+<span class="nc" id="L315">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
