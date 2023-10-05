@@ -38,4 +38,16 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: jacoco-report
-          path: build/jacoco/generateJacocoReport/html # Ajusta la ruta según donde se genera tu informe
+          path: build/reports/jacoco/test/html # Ajusta la ruta según donde se genera tu informe
+
+      - name: Check Jacoco Coverage
+        id: jacoco-coverage
+        run: |
+          coverage=$(grep "Total" build/reports/jacoco/test/html/index.html | grep -oP '\d+(?=%)')
+          echo "Coverage: $coverage%"
+          if (( coverage < 80 )); then
+            echo "Coverage is less than 80%, failing the build."
+            exit 1
+          fi
+        shell: bash
+
