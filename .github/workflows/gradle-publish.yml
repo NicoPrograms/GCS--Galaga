@@ -45,8 +45,8 @@ jobs:
         run: |
           coverage=$(grep "Total" build/jacoco/generateJacocoReport/html/index.html | grep -oP '\d+(?=%)')
           echo "Coverage: $coverage%"
-          if (( coverage < 5 )); then
-            echo "Coverage is less than 5%, failing the build."
+          if (( coverage < 15 )); then
+            echo "Coverage is less than 15%, failing the build."
             exit 1
           fi
         shell: bash
