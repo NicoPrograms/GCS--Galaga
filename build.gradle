@@ -23,45 +23,24 @@ java {
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    dependsOn test
 }
 
 jacoco {
-    toolVersion = '0.8.7' // Puedes usar la última versión de Jacoco aquí
-    // Configura el destino de los informes de cobertura
-    reportsDir = file("$buildDir/jacoco")
+    toolVersion = '0.8.7'
+    reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
 }
 
-tasks.withType(Test) {
-    jacoco.includeNoLocationClasses = true
-}
-
-task generateJacocoReport(type: JacocoReport, dependsOn: ['test']) {
+jacocoTestReport {
     reports {
-        xml.enabled = true
-        html.enabled = true
-    }
-    def coverageSourceDirs = [
-            'src/main/java', // Directorios fuente de producción
-            'src/main/kotlin', // Directorios fuente de producción (si usas Kotlin)
-    ]
-    sourceDirectories.setFrom(files(coverageSourceDirs))
-    classDirectories.setFrom(files("build/classes/java/main"))
-    executionData.setFrom(files("build/jacoco/test.exec"))
-}
-
-task checkCoverage {
-    dependsOn generateJacocoReport
-    doLast {
-        def minCoverage = 0.15 // Cambia este valor al umbral mínimo que deseas
-        def jacocoReport = file("$buildDir/jacoco/generateJacocoReport/html/index.html")
-        def coverageLine = jacocoReport.text.findAll(/Total[^<]+/)[0]
-        def coverage = (coverageLine =~ /(\d+\.\d+)%/)[0][1] as Double
-
-
-        if (coverage < minCoverage) {
-            throw new GradleException("La cobertura de código actual ($coverage%) es menor que el umbral mínimo ($minCoverage%)")
-        } else {
-            println "Cobertura de código actual: $coverage%"
-        }
+        xml.required = true
+        csv.required = true
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
     }
 }
+
+

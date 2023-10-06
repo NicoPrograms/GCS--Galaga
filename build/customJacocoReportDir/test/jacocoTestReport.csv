@@ -1,0 +1,29 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Galaga,_08final.images,SpriteTexLoader,75,40,21,2,41,12,21,3,0,3
+Galaga,_08final.images,SpriteTexLoader.SpriteTex,0,129,0,0,0,22,0,1,0,1
+Galaga,_08final.sounds,Sound.new Runnable() {...},28,0,0,0,11,0,2,0,2,0
+Galaga,_08final.sounds,Sound,66,0,2,0,24,0,7,0,6,0
+Galaga,_08final.mvc.view,GameFrame,117,0,6,0,41,0,11,0,8,0
+Galaga,_08final.mvc.view,GameObserver,43,0,2,0,15,0,4,0,3,0
+Galaga,_08final.mvc.view,GamePanel,434,0,24,0,92,0,16,0,4,0
+Galaga,_08final.mvc.view,Game_Sub,113,0,16,0,30,0,16,0,8,0
+Galaga,_08final.mvc.view,MenuPanel,146,0,4,0,36,0,6,0,4,0
+Galaga,_08final.mvc.model.Enemys,RedEnemy,298,0,10,0,56,0,15,0,10,0
+Galaga,_08final.mvc.model.Enemys,BlueEnemy,283,0,10,0,51,0,11,0,6,0
+Galaga,_08final.mvc.model.Enemys,YellowEnemy,280,0,10,0,50,0,11,0,6,0
+Galaga,_08final.mvc.controller,Game.STATUS,33,0,0,0,6,0,1,0,1,0
+Galaga,_08final.mvc.controller,EnemyController,569,0,44,0,123,0,41,0,19,0
+Galaga,_08final.mvc.controller,Game.new Runnable() {...},14,0,0,0,7,0,2,0,2,0
+Galaga,_08final.mvc.controller,Game,347,0,34,0,117,0,42,0,18,0
+Galaga,_08final.mvc.model,Bullet,24,0,0,0,6,0,3,0,3,0
+Galaga,_08final.mvc.model,Ship,87,68,10,0,15,21,6,11,1,11
+Galaga,_08final.mvc.model,Triangulo,118,0,4,0,21,0,4,0,2,0
+Galaga,_08final.mvc.model,Game_Obs,20,0,0,0,9,0,3,0,3,0
+Galaga,_08final.mvc.model,Rectangulo,90,0,6,0,18,0,5,0,2,0
+Galaga,_08final.mvc.model,LvlN,8,0,0,0,3,0,1,0,1,0
+Galaga,_08final.mvc.model,GameManager,59,0,2,0,18,0,8,0,7,0
+Galaga,_08final.mvc.model,Aleatorio,85,0,2,0,17,0,3,0,2,0
+Galaga,_08final.mvc.model,Explosion,13,0,0,0,3,0,2,0,2,0
+Galaga,_08final.mvc.model,Physics,117,0,22,0,26,0,19,0,8,0
+Galaga,_08final.mvc.model,Level,75,0,8,0,22,0,10,0,6,0
+Galaga,_08final.mvc.model,Sprite,57,12,0,0,12,5,7,1,7,1
