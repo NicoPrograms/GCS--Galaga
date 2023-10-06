@@ -18,7 +18,7 @@ public class ShipTest {
         Assertions.assertEquals(-ship.getS(), ship.getVelx(), 0.001);
     }
 
-    /*@Test
+    @Test
     public void testMoveRight() {
         Ship ship = new Ship(new Point(0,0));
         ship.moveRight(1);
@@ -30,7 +30,7 @@ public class ShipTest {
         Ship ship = new Ship(new Point(0,0));
         ship.moveDown(1);
         Assertions.assertEquals(ship.getS(), ship.getVelY(), 0.001);
-    }*/
+    }
 
     @Test
     public void testMoveUp() {
