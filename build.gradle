@@ -44,7 +44,7 @@ jacocoTestCoverageVerification {
         rule {
             enabled = true
             limit {
-                minimum = 0.08
+                minimum = 0.15
             }
         }
     }

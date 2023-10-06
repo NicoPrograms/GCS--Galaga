@@ -16,7 +16,7 @@ Galaga,_08final.mvc.controller,EnemyController,569,0,44,0,123,0,41,0,19,0
 Galaga,_08final.mvc.controller,Game.new Runnable() {...},14,0,0,0,7,0,2,0,2,0
 Galaga,_08final.mvc.controller,Game,347,0,34,0,117,0,42,0,18,0
 Galaga,_08final.mvc.model,Bullet,24,0,0,0,6,0,3,0,3,0
-Galaga,_08final.mvc.model,Ship,87,68,10,0,15,21,6,11,1,11
+Galaga,_08final.mvc.model,Ship,97,58,10,0,19,17,8,9,3,9
 Galaga,_08final.mvc.model,Triangulo,118,0,4,0,21,0,4,0,2,0
 Galaga,_08final.mvc.model,Game_Obs,20,0,0,0,9,0,3,0,3,0
 Galaga,_08final.mvc.model,Rectangulo,90,0,6,0,18,0,5,0,2,0
