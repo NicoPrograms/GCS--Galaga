@@ -7,7 +7,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.sound.sampled.*;
 
 <span class="nc" id="L9">public class Sound {</span>
-<span class="fc" id="L10">	private static float volume = 0.5f;</span>
+<span class="nc" id="L10">	private static float volume = 0.5f;</span>
 
     /**
      * Plays an individual sound file once.
@@ -15,24 +15,24 @@ import javax.sound.sampled.*;
      * @cite: http://stackoverflow.com/questions/26305/how-can-i-play-sound-in-java
      * */
 	public static synchronized void playSound(final String strPath) {
-<span class="fc" id="L18">	    new Thread(new Runnable() {</span>
+<span class="nc" id="L18">	    new Thread(new Runnable() {</span>
 	      public void run() {
 	        try {
-<span class="fc" id="L21">	          Clip clp = AudioSystem.getClip();</span>
+<span class="nc" id="L21">	          Clip clp = AudioSystem.getClip();</span>
 
-<span class="fc" id="L23">	          AudioInputStream aisStream =</span>
+<span class="nc" id="L23">	          AudioInputStream aisStream =</span>
 <span class="nc" id="L24">					  AudioSystem.getAudioInputStream(Sound.class.getResourceAsStream(strPath));</span>
 <span class="nc" id="L25">	          clp.open(aisStream);</span>
 
 <span class="nc" id="L27">			  setVolume(clp);</span>
 
 <span class="nc" id="L29">	          clp.start();</span>
-<span class="fc" id="L30">	        } catch (Exception e) {</span>
-<span class="fc" id="L31">	          System.err.println(e.getMessage());</span>
+<span class="nc" id="L30">	        } catch (Exception e) {</span>
+<span class="nc" id="L31">	          System.err.println(e.getMessage());</span>
 <span class="nc" id="L32">	        }</span>
-<span class="fc" id="L33">	      }</span>
-<span class="fc" id="L34">	    }).start();</span>
-<span class="fc" id="L35">	  }</span>
+<span class="nc" id="L33">	      }</span>
+<span class="nc" id="L34">	    }).start();</span>
+<span class="nc" id="L35">	  }</span>
 
 
     /**

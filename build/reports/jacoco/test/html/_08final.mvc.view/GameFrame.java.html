@@ -20,7 +20,7 @@ import javax.swing.*;
 public class GameFrame extends JFrame {
 
     /** The window dimensions for the Frame */
-<span class="fc" id="L23">    public static final Dimension FRAME_DIM = new Dimension(700, 700);</span>
+<span class="nc" id="L23">    public static final Dimension FRAME_DIM = new Dimension(700, 700);</span>
 
     /* The Game panel for the game **/
     private GamePanel mPanel;
@@ -29,30 +29,30 @@ public class GameFrame extends JFrame {
     /* The controller for the game **/
     private Game mController;
 
-<span class="fc" id="L32">    public GameFrame(Game controller) {</span>
+<span class="nc" id="L32">    public GameFrame(Game controller) {</span>
 
         //Enable the frame to be notified if the user clicks on the close button
-<span class="fc" id="L35">        enableEvents(AWTEvent.WINDOW_EVENT_MASK);</span>
+<span class="nc" id="L35">        enableEvents(AWTEvent.WINDOW_EVENT_MASK);</span>
 
         //Set the game controller for the Frame
-<span class="fc" id="L38">        this.mController = controller;</span>
+<span class="nc" id="L38">        this.mController = controller;</span>
 
         try {
             // Try to initialize the game panel
-<span class="fc" id="L42">            initPanel();</span>
+<span class="nc" id="L42">            initPanel();</span>
 <span class="nc" id="L43">        } catch (Exception e) {</span>
 <span class="nc" id="L44">            e.printStackTrace();</span>
-<span class="fc" id="L45">        }</span>
+<span class="nc" id="L45">        }</span>
 
         //Initialize the frame
-<span class="fc" id="L48">        this.setTitle(&quot;Galaga&quot;);</span>
-<span class="fc" id="L49">        this.setSize(FRAME_DIM);</span>
-<span class="fc" id="L50">        this.setFocusable(true);</span>
-<span class="fc" id="L51">        this.setResizable(false);</span>
-<span class="fc" id="L52">        this.pack();</span>
-<span class="fc" id="L53">        this.setLocationRelativeTo(null);</span>
-<span class="fc" id="L54">        this.setVisible(true);</span>
-<span class="fc" id="L55">    }</span>
+<span class="nc" id="L48">        this.setTitle(&quot;Galaga&quot;);</span>
+<span class="nc" id="L49">        this.setSize(FRAME_DIM);</span>
+<span class="nc" id="L50">        this.setFocusable(true);</span>
+<span class="nc" id="L51">        this.setResizable(false);</span>
+<span class="nc" id="L52">        this.pack();</span>
+<span class="nc" id="L53">        this.setLocationRelativeTo(null);</span>
+<span class="nc" id="L54">        this.setVisible(true);</span>
+<span class="nc" id="L55">    }</span>
 
     /**
      * Draws the current game information to the window
@@ -63,29 +63,29 @@ public class GameFrame extends JFrame {
 
     private void initPanel() throws Exception {
 
-<span class="fc" id="L66">        requestFocus();</span>
+<span class="nc" id="L66">        requestFocus();</span>
         //Set the layout for the panel
-<span class="fc" id="L68">        JPanel contentPane = (JPanel) this.getContentPane();</span>
-<span class="fc" id="L69">        contentPane.setLayout(new BorderLayout());</span>
+<span class="nc" id="L68">        JPanel contentPane = (JPanel) this.getContentPane();</span>
+<span class="nc" id="L69">        contentPane.setLayout(new BorderLayout());</span>
 
         //Create a new GamePanel for the controller
-<span class="fc" id="L72">        this.mPanel = new GamePanel();</span>
+<span class="nc" id="L72">        this.mPanel = new GamePanel();</span>
 
         //Let the controller be the listener for the all actions that happen on the game panel
 //        mPanel.addKeyListener(this.mController);
-<span class="fc" id="L76">        this.addKeyListener(this.mController);</span>
+<span class="nc" id="L76">        this.addKeyListener(this.mController);</span>
 
         //Add the game panel to the window's content panel.
-<span class="fc" id="L79">        contentPane.add(mPanel);</span>
-<span class="fc" id="L80">    }</span>
+<span class="nc" id="L79">        contentPane.add(mPanel);</span>
+<span class="nc" id="L80">    }</span>
     @Override
     protected void processWindowEvent(WindowEvent e) {
-<span class="fc" id="L83">        super.processWindowEvent(e);</span>
+<span class="nc" id="L83">        super.processWindowEvent(e);</span>
         //Exit the game if the window closed button is closed.
-<span class="pc bpc" id="L85" title="1 of 2 branches missed.">        if (e.getID() == WindowEvent.WINDOW_CLOSING) {</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">        if (e.getID() == WindowEvent.WINDOW_CLOSING) {</span>
 <span class="nc" id="L86">            System.exit(0);</span>
         }
-<span class="fc" id="L88">    }</span>
+<span class="nc" id="L88">    }</span>
     public void updateVolume() {
 <span class="nc" id="L90">        float volume = mPanel.getRec() / 150.0f;</span>
         // Establecer el volumen para el sonido

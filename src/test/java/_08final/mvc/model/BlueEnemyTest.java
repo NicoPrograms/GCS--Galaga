@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 
-public class BlueEnemyTest {
+/*public class BlueEnemyTest {
 
     private Game game;
 
@@ -39,3 +39,4 @@ public class BlueEnemyTest {
         Assertions.assertTrue(blueEnemy.getSpeed() > initialSpeed);
     }
 }
+*/

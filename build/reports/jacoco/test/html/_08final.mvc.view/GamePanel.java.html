@@ -32,15 +32,15 @@ public class GamePanel extends JPanel {
 
     private Game game;
     private ArrayList&lt;Integer&gt; score;
-<span class="fc" id="L35">    private MenuPanel menuPanel = new MenuPanel();</span>
-<span class="fc" id="L36">    private int i = 1;</span>
-<span class="fc" id="L37">    private int currentLevel = 1;</span>
-<span class="fc" id="L38">    private int rectangulo=150;</span>
+<span class="nc" id="L35">    private MenuPanel menuPanel = new MenuPanel();</span>
+<span class="nc" id="L36">    private int i = 1;</span>
+<span class="nc" id="L37">    private int currentLevel = 1;</span>
+<span class="nc" id="L38">    private int rectangulo=150;</span>
 
 
-<span class="fc" id="L41">    public GamePanel() {</span>
-<span class="fc" id="L42">        this.setPreferredSize(GameFrame.FRAME_DIM);</span>
-<span class="fc" id="L43">    }</span>
+<span class="nc" id="L41">    public GamePanel() {</span>
+<span class="nc" id="L42">        this.setPreferredSize(GameFrame.FRAME_DIM);</span>
+<span class="nc" id="L43">    }</span>
 
     //--------------------------
 
@@ -48,12 +48,12 @@ public class GamePanel extends JPanel {
 
     @Override
     public void paintComponent(Graphics g) {
-<span class="fc" id="L51">        super.paintComponent(g);</span>
+<span class="nc" id="L51">        super.paintComponent(g);</span>
 
-<span class="fc" id="L53">        int currentLevel = game.getLevel();</span>
+<span class="nc" id="L53">        int currentLevel = game.getLevel();</span>
 
-<span class="pc bpc" id="L55" title="1 of 2 branches missed.">        if (currentLevel == 1) {</span>
-<span class="fc" id="L56">            g.drawImage(SpriteTexLoader.load(SpriteTexLoader.SpriteTex.BACKGROUND), 0, 0,</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">        if (currentLevel == 1) {</span>
+<span class="nc" id="L56">            g.drawImage(SpriteTexLoader.load(SpriteTexLoader.SpriteTex.BACKGROUND), 0, 0,</span>
                     GameFrame.FRAME_DIM.width, GameFrame.FRAME_DIM.height, this);
 <span class="nc bnc" id="L58" title="All 2 branches missed.">        } else if (currentLevel == 2) {</span>
 <span class="nc" id="L59">            g.drawImage(SpriteTexLoader.load(SpriteTexLoader.SpriteTex.BACKGROUND), 0, 0,</span>
@@ -72,14 +72,14 @@ public class GamePanel extends JPanel {
         }
 
 
-<span class="fc" id="L75">        ArrayList&lt;Sprite&gt; sprites = Game.getDrawableSprites();</span>
+<span class="nc" id="L75">        ArrayList&lt;Sprite&gt; sprites = Game.getDrawableSprites();</span>
 
-<span class="fc bfc" id="L77" title="All 2 branches covered.">        for (Sprite sprite : sprites) {</span>
-<span class="pc bpc" id="L78" title="1 of 2 branches missed.">            if (Game.status == Game.STATUS.MENU) {</span>
-<span class="fc" id="L79">                menuPanel.mainMenu(g);</span>
-<span class="fc" id="L80">                g.setColor(Color.white);</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">        for (Sprite sprite : sprites) {</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            if (Game.status == Game.STATUS.MENU) {</span>
+<span class="nc" id="L79">                menuPanel.mainMenu(g);</span>
+<span class="nc" id="L80">                g.setColor(Color.white);</span>
                 //volumen
-<span class="fc" id="L82">                g.fillRect(280, 620, rectangulo, 30);</span>
+<span class="nc" id="L82">                g.fillRect(280, 620, rectangulo, 30);</span>
 <span class="nc bnc" id="L83" title="All 2 branches missed.">            } else if (Game.status == Game.STATUS.HELP) {</span>
 <span class="nc" id="L84">                menuPanel.helpMenu(g);</span>
 <span class="nc bnc" id="L85" title="All 2 branches missed.">            } else if (Game.status == Game.STATUS.GAME_OVER) {</span>
@@ -154,14 +154,14 @@ public class GamePanel extends JPanel {
 
 <span class="nc" id="L155">                sprite.draw(g);</span>
             }
-<span class="fc" id="L157">        }</span>
+<span class="nc" id="L157">        }</span>
 
         // Mostrar mensaje de nivel si corresponde
         /*if (Game.status == Game.STATUS.GAME &amp;&amp; currentLevel &gt;= 1) {
             showLevelMessage(g, currentLevel);
             currentLevel++;
         }*/
-<span class="fc" id="L164">    }</span>
+<span class="nc" id="L164">    }</span>
 
 
     public void setRec(int p)

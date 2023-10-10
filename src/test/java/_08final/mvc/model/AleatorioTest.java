@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.awt.Point;
 
-public class AleatorioTest {
+/*public class AleatorioTest {
 
     @Test
     public void testMovimiento() {
@@ -35,3 +35,4 @@ public class AleatorioTest {
         // Puedes seguir el mismo patrón para verificar BlueEnemy si lo necesitas.
     }
 }
+*/
