@@ -35,11 +35,11 @@ public class Game implements Runnable, KeyListener {
     public Ship mShip;
 
     /** */
-<span class="nc" id="L38">    private boolean isShooting = false;</span>
+<span class="fc" id="L38">    private boolean isShooting = false;</span>
     private GamePanel gamePanel;
 
     /** List of Sprites that need to be rendered  */
-<span class="nc" id="L42">    public static ArrayList&lt;Sprite&gt; _sprites = new ArrayList&lt;Sprite&gt;();</span>
+<span class="fc" id="L42">    public static ArrayList&lt;Sprite&gt; _sprites = new ArrayList&lt;Sprite&gt;();</span>
 
     public static ArrayList&lt;RedEnemy&gt; er;
     public static ArrayList&lt;YellowEnemy&gt; ey;
@@ -47,8 +47,8 @@ public class Game implements Runnable, KeyListener {
 
     private double deltaTimeInSecs;
     public static int score;
-<span class="nc" id="L50">    public static int level = 1;</span>
-<span class="nc" id="L51">    public static int shipLife = 3;</span>
+<span class="fc" id="L50">    public static int level = 1;</span>
+<span class="fc" id="L51">    public static int shipLife = 3;</span>
     private EnemyController ec;
     public static Explosion e1;
     public static Explosion e2;
@@ -60,40 +60,40 @@ public class Game implements Runnable, KeyListener {
     public static Explosion f3;
     public static Explosion f4;
     public static Explosion f5;
-<span class="nc" id="L63">    public static int HEALTH = 100;</span>
+<span class="fc" id="L63">    public static int HEALTH = 100;</span>
 
 
 
-<span class="nc" id="L67">    public Game() {</span>
+<span class="fc" id="L67">    public Game() {</span>
 
-<span class="nc" id="L69">        this.mGameFrame = new GameFrame(this);</span>
-<span class="nc" id="L70">        this.mShip = new Ship(new Point(400,800));</span>
-<span class="nc" id="L71">        Game._sprites.add(mShip);</span>
+<span class="fc" id="L69">        this.mGameFrame = new GameFrame(this);</span>
+<span class="fc" id="L70">        this.mShip = new Ship(new Point(400,800));</span>
+<span class="fc" id="L71">        Game._sprites.add(mShip);</span>
 
-<span class="nc" id="L73">        this.ec = new EnemyController(this);</span>
-<span class="nc" id="L74">        er = ec.getRed();</span>
-<span class="nc" id="L75">        ey = ec.getYellow();</span>
-<span class="nc" id="L76">        eb = ec.getBlue();</span>
+<span class="fc" id="L73">        this.ec = new EnemyController(this);</span>
+<span class="fc" id="L74">        er = ec.getRed();</span>
+<span class="fc" id="L75">        ey = ec.getYellow();</span>
+<span class="fc" id="L76">        eb = ec.getBlue();</span>
 
-<span class="nc bnc" id="L78" title="All 2 branches missed.">        if (Game.status == STATUS.MENU) {</span>
+<span class="pc bpc" id="L78" title="1 of 2 branches missed.">        if (Game.status == STATUS.MENU) {</span>
             try{
-<span class="nc" id="L80">                String s = &quot;/_08final/sounds/themeSong.wav&quot;;</span>
-<span class="nc" id="L81">                Sound.playSound(s);</span>
+<span class="fc" id="L80">                String s = &quot;/_08final/sounds/themeSong.wav&quot;;</span>
+<span class="fc" id="L81">                Sound.playSound(s);</span>
 <span class="nc" id="L82">            }catch(Exception e) {</span>
 <span class="nc" id="L83">                e.printStackTrace();</span>
-<span class="nc" id="L84">            }</span>
+<span class="fc" id="L84">            }</span>
         }
-<span class="nc" id="L86">    }</span>
+<span class="fc" id="L86">    }</span>
 
-<span class="nc" id="L88">    public enum STATUS{</span>
-<span class="nc" id="L89">        MENU,</span>
-<span class="nc" id="L90">        GAME,</span>
-<span class="nc" id="L91">        HELP,</span>
-<span class="nc" id="L92">        ENEMY_EXPLOSION,</span>
-<span class="nc" id="L93">        GAME_OVER</span>
+<span class="fc" id="L88">    public enum STATUS{</span>
+<span class="fc" id="L89">        MENU,</span>
+<span class="fc" id="L90">        GAME,</span>
+<span class="fc" id="L91">        HELP,</span>
+<span class="fc" id="L92">        ENEMY_EXPLOSION,</span>
+<span class="fc" id="L93">        GAME_OVER</span>
     };
 
-<span class="nc" id="L96">    public static STATUS status = STATUS.MENU;</span>
+<span class="fc" id="L96">    public static STATUS status = STATUS.MENU;</span>
 
     public static int getScore() {
 <span class="nc" id="L99">        return score;</span>
@@ -104,7 +104,7 @@ public class Game implements Runnable, KeyListener {
 <span class="nc" id="L104">    }</span>
 
     public static int getLevel() {
-<span class="nc" id="L107">        return level;</span>
+<span class="fc" id="L107">        return level;</span>
     }
 
     public void setScore(int bonus) {
@@ -206,7 +206,7 @@ public class Game implements Runnable, KeyListener {
      * @return an arraylist of all the drawable sprites in the game
      */
     public static ArrayList&lt;Sprite&gt; getDrawableSprites() {
-<span class="nc" id="L209">        return new ArrayList&lt;Sprite&gt;(_sprites);</span>
+<span class="fc" id="L209">        return new ArrayList&lt;Sprite&gt;(_sprites);</span>
     }
 
     @Override

@@ -9,8 +9,6 @@ import java.awt.*;
 
 public class ShipTest {
 
-
-
     @Test
     public void testMoveLeft() {
         Ship ship = new Ship(new Point(0,0));
@@ -38,4 +36,18 @@ public class ShipTest {
         ship.moveUp(1);
         Assertions.assertEquals(-ship.getS(), ship.getVelY(), 0.001);
     }
+    @Test
+    public void testSetVelX() {
+        Ship ship = new Ship(new Point(0, 0));
+        ship.setVelX(1.0);
+        Assertions.assertEquals(300.0, ship.getVelx(), 0.001);
+    }
+
+    @Test
+    public void testSetVelY() {
+        Ship ship = new Ship(new Point(0, 0));
+        ship.setVelY(-1.0);
+        Assertions.assertEquals(-300.0, ship.getVelY(), 0.001);
+    }
+
 }

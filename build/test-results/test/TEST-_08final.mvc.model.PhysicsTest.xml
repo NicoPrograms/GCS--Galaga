@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="_08final.mvc.model.PhysicsTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2023-10-10T23:17:39" hostname="DESKTOP-10Q88AS" time="0.062">
+  <properties/>
+  <testcase name="testBlueEnemyCollisionWithBullet()" classname="_08final.mvc.model.PhysicsTest" time="0.012"/>
+  <testcase name="testYellowEnemyCollisionWithBullet()" classname="_08final.mvc.model.PhysicsTest" time="0.007"/>
+  <testcase name="testBlueEnemyCollisionWithShip()" classname="_08final.mvc.model.PhysicsTest" time="0.007"/>
+  <testcase name="testYellowEnemyCollisionWithShip()" classname="_08final.mvc.model.PhysicsTest" time="0.007"/>
+  <testcase name="testShipCollisionWithRedEnemy()" classname="_08final.mvc.model.PhysicsTest" time="0.006"/>
+  <testcase name="testRedEnemyCollisionWithBullet()" classname="_08final.mvc.model.PhysicsTest" time="0.006"/>
+  <testcase name="testRedEnemyCollisionWithShip()" classname="_08final.mvc.model.PhysicsTest" time="0.006"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

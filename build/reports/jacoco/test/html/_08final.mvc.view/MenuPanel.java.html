@@ -26,29 +26,29 @@ public class MenuPanel extends JPanel {
     private BufferedImage image;
 
 
-<span class="nc" id="L29">    public MenuPanel() {</span>
-<span class="nc" id="L30">        setLayout(new FlowLayout());</span>
-<span class="nc" id="L31">        setPreferredSize(new Dimension(800, 600));</span>
+<span class="fc" id="L29">    public MenuPanel() {</span>
+<span class="fc" id="L30">        setLayout(new FlowLayout());</span>
+<span class="fc" id="L31">        setPreferredSize(new Dimension(800, 600));</span>
 
         try {
-<span class="nc" id="L34">            image = ImageIO.read(new File(&quot;src/main/java/_08final/images/Galaga.png&quot;));</span>
+<span class="fc" id="L34">            image = ImageIO.read(new File(&quot;src/main/java/_08final/images/Galaga.png&quot;));</span>
 <span class="nc" id="L35">        } catch (Exception e) {</span>
 <span class="nc" id="L36">            e.printStackTrace();</span>
-<span class="nc" id="L37">        }</span>
+<span class="fc" id="L37">        }</span>
 
-<span class="nc" id="L39">    }</span>
+<span class="fc" id="L39">    }</span>
 
     public void mainMenu(Graphics g) {
-<span class="nc" id="L42">        g.setColor(Color.white);</span>
-<span class="nc" id="L43">        g.drawImage(image, 185, 60, 340, 180, null);</span>
-<span class="nc" id="L44">        Font fnt1 = new Font(&quot;arial&quot;, Font.BOLD, 30);</span>
-<span class="nc" id="L45">        g.setFont(fnt1);</span>
-<span class="nc" id="L46">        g.drawString(&quot;Play: Hit P&quot;, 280, 270);</span>
-<span class="nc" id="L47">        g.drawString(&quot;Help: Hit H&quot;, 280, 370);</span>
-<span class="nc" id="L48">        g.drawString(&quot;Quit: Hit Q&quot;, 280, 470);</span>
-<span class="nc" id="L49">        g.drawString(&quot;Volumen&quot;, 280, 570);</span>
+<span class="fc" id="L42">        g.setColor(Color.white);</span>
+<span class="fc" id="L43">        g.drawImage(image, 185, 60, 340, 180, null);</span>
+<span class="fc" id="L44">        Font fnt1 = new Font(&quot;arial&quot;, Font.BOLD, 30);</span>
+<span class="fc" id="L45">        g.setFont(fnt1);</span>
+<span class="fc" id="L46">        g.drawString(&quot;Play: Hit P&quot;, 280, 270);</span>
+<span class="fc" id="L47">        g.drawString(&quot;Help: Hit H&quot;, 280, 370);</span>
+<span class="fc" id="L48">        g.drawString(&quot;Quit: Hit Q&quot;, 280, 470);</span>
+<span class="fc" id="L49">        g.drawString(&quot;Volumen&quot;, 280, 570);</span>
 
-<span class="nc" id="L51">    }</span>
+<span class="fc" id="L51">    }</span>
 
     public void helpMenu(Graphics g) {
 <span class="nc" id="L54">        Font fnt1 = new Font(&quot;arial&quot;, Font.BOLD, 20);</span>

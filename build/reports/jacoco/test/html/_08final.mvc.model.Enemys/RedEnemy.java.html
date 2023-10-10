@@ -12,18 +12,18 @@ import java.awt.*;
 
 public class RedEnemy extends Sprite implements Enemy {
 
-<span class="nc" id="L15">    private double speed = 100.0;</span>
+<span class="fc" id="L15">    private double speed = 100.0;</span>
     private Game game;
     private EnemyController c;
     private double xv;
 
-<span class="nc" id="L20">    private final static Dimension ENEMY_DIM = new Dimension(20,30);</span>
+<span class="fc" id="L20">    private final static Dimension ENEMY_DIM = new Dimension(20,30);</span>
 
     public RedEnemy(Point initPos, Game game, EnemyController c) {
-<span class="nc" id="L23">        super(initPos, ENEMY_DIM, SpriteTexLoader.load(SpriteTexLoader.SpriteTex.RED_FIGHTER));</span>
-<span class="nc" id="L24">        this.game = game;</span>
-<span class="nc" id="L25">        this.c = c;</span>
-<span class="nc" id="L26">    }</span>
+<span class="fc" id="L23">        super(initPos, ENEMY_DIM, SpriteTexLoader.load(SpriteTexLoader.SpriteTex.RED_FIGHTER));</span>
+<span class="fc" id="L24">        this.game = game;</span>
+<span class="fc" id="L25">        this.c = c;</span>
+<span class="fc" id="L26">    }</span>
 
     @Override
     public void InSpeed() {

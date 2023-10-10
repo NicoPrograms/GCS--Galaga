@@ -6,9 +6,7 @@ import _08final.mvc.model.Enemys.YellowEnemy;
 
 import java.util.ArrayList;
 
-/**
- * Created by zhuoyuzhu on 12/7/16.
- */
+
 public class Physics {
 
     public static boolean Collision(Ship s, ArrayList<RedEnemy> r) {

@@ -97,4 +97,7 @@ public class BlueEnemy extends Sprite implements Enemy{
     public void update() {
     }
 
+    public double getSpeed() {
+        return speed;
+    }
 }

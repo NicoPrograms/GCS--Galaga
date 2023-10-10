@@ -15,17 +15,17 @@ import java.awt.*;
  */
 public class YellowEnemy extends Sprite implements Enemy {
 
-<span class="nc" id="L18">    private double speed = 100.0;</span>
+<span class="fc" id="L18">    private double speed = 100.0;</span>
     private Game game;
     private EnemyController c;
 
-<span class="nc" id="L22">    private final static Dimension ENEMY_DIM = new Dimension(20,30);</span>
+<span class="fc" id="L22">    private final static Dimension ENEMY_DIM = new Dimension(20,30);</span>
 
     public YellowEnemy(Point initPos, Game game, EnemyController c) {
-<span class="nc" id="L25">        super(initPos, ENEMY_DIM, SpriteTexLoader.load(SpriteTexLoader.SpriteTex.YELLOW_FIGHTER));</span>
-<span class="nc" id="L26">        this.game = game;</span>
-<span class="nc" id="L27">        this.c = c;</span>
-<span class="nc" id="L28">    }</span>
+<span class="fc" id="L25">        super(initPos, ENEMY_DIM, SpriteTexLoader.load(SpriteTexLoader.SpriteTex.YELLOW_FIGHTER));</span>
+<span class="fc" id="L26">        this.game = game;</span>
+<span class="fc" id="L27">        this.c = c;</span>
+<span class="fc" id="L28">    }</span>
 
     public void tick(long deltaTime, YellowEnemy TempEnemy) {
 <span class="nc" id="L31">        final double MILS_TO_SECS = 0.001f;</span>

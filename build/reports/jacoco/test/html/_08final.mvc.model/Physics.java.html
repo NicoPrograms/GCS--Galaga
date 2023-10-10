@@ -6,66 +6,64 @@ import _08final.mvc.model.Enemys.YellowEnemy;
 
 import java.util.ArrayList;
 
-/**
- * Created by zhuoyuzhu on 12/7/16.
- */
-<span class="nc" id="L12">public class Physics {</span>
+
+<span class="nc" id="L10">public class Physics {</span>
 
     public static boolean Collision(Ship s, ArrayList&lt;RedEnemy&gt; r) {
-<span class="nc bnc" id="L15" title="All 2 branches missed.">        for (int i = 0; i &lt; r.size(); i++) {</span>
-<span class="nc bnc" id="L16" title="All 2 branches missed.">            if (s.getBounds().intersects(r.get(i).getBounds())) {</span>
-<span class="nc" id="L17">                return true;</span>
+<span class="pc bpc" id="L13" title="1 of 2 branches missed.">        for (int i = 0; i &lt; r.size(); i++) {</span>
+<span class="pc bpc" id="L14" title="1 of 2 branches missed.">            if (s.getBounds().intersects(r.get(i).getBounds())) {</span>
+<span class="fc" id="L15">                return true;</span>
             }
         }
-<span class="nc" id="L20">        return false;</span>
+<span class="nc" id="L18">        return false;</span>
     }
 
     public static boolean Collision(RedEnemy r, ArrayList&lt;Bullet&gt; b) {
-<span class="nc bnc" id="L24" title="All 2 branches missed.">        for (int i = 0; i &lt; b.size(); i++) {</span>
-<span class="nc bnc" id="L25" title="All 2 branches missed.">            if (r.getBounds().intersects(b.get(i).getBounds())) {</span>
-<span class="nc" id="L26">                return true;</span>
+<span class="pc bpc" id="L22" title="1 of 2 branches missed.">        for (int i = 0; i &lt; b.size(); i++) {</span>
+<span class="pc bpc" id="L23" title="1 of 2 branches missed.">            if (r.getBounds().intersects(b.get(i).getBounds())) {</span>
+<span class="fc" id="L24">                return true;</span>
             }
         }
-<span class="nc" id="L29">        return false;</span>
+<span class="nc" id="L27">        return false;</span>
     }
 
     public static boolean Collision(RedEnemy r, Ship s) {
-<span class="nc bnc" id="L33" title="All 2 branches missed.">        if (r.getBounds().intersects(s.getBounds())) {</span>
-<span class="nc" id="L34">            return true;</span>
+<span class="pc bpc" id="L31" title="1 of 2 branches missed.">        if (r.getBounds().intersects(s.getBounds())) {</span>
+<span class="fc" id="L32">            return true;</span>
         }
-<span class="nc" id="L36">        return false;</span>
+<span class="nc" id="L34">        return false;</span>
     }
 
     public static boolean Collision(YellowEnemy y, ArrayList&lt;Bullet&gt; b) {
-<span class="nc bnc" id="L40" title="All 2 branches missed.">        for (int i = 0; i &lt; b.size(); i++) {</span>
-<span class="nc bnc" id="L41" title="All 2 branches missed.">            if (y.getBounds().intersects(b.get(i).getBounds())) {</span>
-<span class="nc" id="L42">                return true;</span>
+<span class="pc bpc" id="L38" title="1 of 2 branches missed.">        for (int i = 0; i &lt; b.size(); i++) {</span>
+<span class="pc bpc" id="L39" title="1 of 2 branches missed.">            if (y.getBounds().intersects(b.get(i).getBounds())) {</span>
+<span class="fc" id="L40">                return true;</span>
             }
         }
-<span class="nc" id="L45">        return false;</span>
+<span class="nc" id="L43">        return false;</span>
     }
 
     public static boolean Collision(YellowEnemy y, Ship s) {
-<span class="nc bnc" id="L49" title="All 2 branches missed.">        if (y.getBounds().intersects(s.getBounds())) {</span>
-<span class="nc" id="L50">            return true;</span>
+<span class="pc bpc" id="L47" title="1 of 2 branches missed.">        if (y.getBounds().intersects(s.getBounds())) {</span>
+<span class="fc" id="L48">            return true;</span>
         }
-<span class="nc" id="L52">        return false;</span>
+<span class="nc" id="L50">        return false;</span>
     }
 
     public static boolean Collision(BlueEnemy bl, ArrayList&lt;Bullet&gt; b) {
-<span class="nc bnc" id="L56" title="All 2 branches missed.">        for (int i = 0; i &lt; b.size(); i++) {</span>
-<span class="nc bnc" id="L57" title="All 2 branches missed.">            if (bl.getBounds().intersects(b.get(i).getBounds())) {</span>
-<span class="nc" id="L58">                return true;</span>
+<span class="pc bpc" id="L54" title="1 of 2 branches missed.">        for (int i = 0; i &lt; b.size(); i++) {</span>
+<span class="pc bpc" id="L55" title="1 of 2 branches missed.">            if (bl.getBounds().intersects(b.get(i).getBounds())) {</span>
+<span class="fc" id="L56">                return true;</span>
             }
         }
-<span class="nc" id="L61">        return false;</span>
+<span class="nc" id="L59">        return false;</span>
     }
 
     public static boolean Collision(BlueEnemy bl, Ship s) {
-<span class="nc bnc" id="L65" title="All 2 branches missed.">        if (bl.getBounds().intersects(s.getBounds())) {</span>
-<span class="nc" id="L66">            return true;</span>
+<span class="pc bpc" id="L63" title="1 of 2 branches missed.">        if (bl.getBounds().intersects(s.getBounds())) {</span>
+<span class="fc" id="L64">            return true;</span>
         }
-<span class="nc" id="L68">        return false;</span>
+<span class="nc" id="L66">        return false;</span>
     }
 
 }

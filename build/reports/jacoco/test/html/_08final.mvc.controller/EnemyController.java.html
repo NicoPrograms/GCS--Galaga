@@ -18,16 +18,16 @@ public class EnemyController extends GamePanel {
      * Yellow enemy score = 50
      * Blue enemy score = 100
      */
-<span class="nc" id="L21">    private ArrayList&lt;YellowEnemy&gt; Y = new ArrayList&lt;YellowEnemy&gt;();</span>
-<span class="nc" id="L22">    private ArrayList&lt;RedEnemy&gt; R = new ArrayList&lt;RedEnemy&gt;();</span>
-<span class="nc" id="L23">    private ArrayList&lt;BlueEnemy&gt; B = new ArrayList&lt;BlueEnemy&gt;();</span>
-<span class="nc" id="L24">    private ArrayList&lt;Bullet&gt; bullet = new ArrayList&lt;Bullet&gt;();</span>
-<span class="nc" id="L25">    private ArrayList&lt;Explosion&gt; ex = new ArrayList&lt;Explosion&gt;();</span>
-<span class="nc" id="L26">    private ArrayList&lt;Ship&gt; sh = new ArrayList&lt;Ship&gt;();</span>
+<span class="fc" id="L21">    private ArrayList&lt;YellowEnemy&gt; Y = new ArrayList&lt;YellowEnemy&gt;();</span>
+<span class="fc" id="L22">    private ArrayList&lt;RedEnemy&gt; R = new ArrayList&lt;RedEnemy&gt;();</span>
+<span class="fc" id="L23">    private ArrayList&lt;BlueEnemy&gt; B = new ArrayList&lt;BlueEnemy&gt;();</span>
+<span class="fc" id="L24">    private ArrayList&lt;Bullet&gt; bullet = new ArrayList&lt;Bullet&gt;();</span>
+<span class="fc" id="L25">    private ArrayList&lt;Explosion&gt; ex = new ArrayList&lt;Explosion&gt;();</span>
+<span class="fc" id="L26">    private ArrayList&lt;Ship&gt; sh = new ArrayList&lt;Ship&gt;();</span>
 
-<span class="nc" id="L28">    private final int RED_SCORE = 20;</span>
-<span class="nc" id="L29">    private final int YELLOW_SCORE = 50;</span>
-<span class="nc" id="L30">    private final int BLUE_SCORE = 100;</span>
+<span class="fc" id="L28">    private final int RED_SCORE = 20;</span>
+<span class="fc" id="L29">    private final int YELLOW_SCORE = 50;</span>
+<span class="fc" id="L30">    private final int BLUE_SCORE = 100;</span>
     private GamePanel gamePanel;
 
     public int currentLevel;
@@ -42,24 +42,24 @@ public class EnemyController extends GamePanel {
     Explosion e;
     Ship s;
 
-<span class="nc" id="L45">    public EnemyController(Game game) {</span>
-<span class="nc" id="L46">        this.game = game;</span>
-<span class="nc" id="L47">        this.currentLevel = 1;</span>
-<span class="nc" id="L48">        this.levelCompleted = false;</span>
-<span class="nc" id="L49">        int x = 125;</span>
-<span class="nc bnc" id="L50" title="All 2 branches missed.">        for (int i = 0; i &lt; 7; i++) {</span>
-<span class="nc" id="L51">            REnemy = new RedEnemy(new Point(x,100), game, this);</span>
-<span class="nc" id="L52">            addRedEnemy(REnemy);</span>
-<span class="nc" id="L53">            Game._sprites.add(REnemy);</span>
-<span class="nc" id="L54">            YEnemy = new YellowEnemy(new Point(x,50), game, this);</span>
-<span class="nc" id="L55">            addYellowEnemy(YEnemy);</span>
-<span class="nc" id="L56">            Game._sprites.add(YEnemy);</span>
-<span class="nc" id="L57">            BEnemy = new BlueEnemy(new Point(x,0), game, this);</span>
-<span class="nc" id="L58">            addBlueEnemy(BEnemy);</span>
-<span class="nc" id="L59">            Game._sprites.add(BEnemy);</span>
-<span class="nc" id="L60">            x += 70;</span>
+<span class="fc" id="L45">    public EnemyController(Game game) {</span>
+<span class="fc" id="L46">        this.game = game;</span>
+<span class="fc" id="L47">        this.currentLevel = 1;</span>
+<span class="fc" id="L48">        this.levelCompleted = false;</span>
+<span class="fc" id="L49">        int x = 125;</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        for (int i = 0; i &lt; 7; i++) {</span>
+<span class="fc" id="L51">            REnemy = new RedEnemy(new Point(x,100), game, this);</span>
+<span class="fc" id="L52">            addRedEnemy(REnemy);</span>
+<span class="fc" id="L53">            Game._sprites.add(REnemy);</span>
+<span class="fc" id="L54">            YEnemy = new YellowEnemy(new Point(x,50), game, this);</span>
+<span class="fc" id="L55">            addYellowEnemy(YEnemy);</span>
+<span class="fc" id="L56">            Game._sprites.add(YEnemy);</span>
+<span class="fc" id="L57">            BEnemy = new BlueEnemy(new Point(x,0), game, this);</span>
+<span class="fc" id="L58">            addBlueEnemy(BEnemy);</span>
+<span class="fc" id="L59">            Game._sprites.add(BEnemy);</span>
+<span class="fc" id="L60">            x += 70;</span>
         }
-<span class="nc" id="L62">    }</span>
+<span class="fc" id="L62">    }</span>
 
     // Lo nuevo desde aca hasta donde marque ----------------------------------------------------------------
     public void startNextLevel() {
@@ -148,8 +148,8 @@ public class EnemyController extends GamePanel {
 <span class="nc" id="L148">    }</span>
 
     public void addYellowEnemy(YellowEnemy newEnemy) {
-<span class="nc" id="L151">        Y.add(newEnemy);</span>
-<span class="nc" id="L152">    }</span>
+<span class="fc" id="L151">        Y.add(newEnemy);</span>
+<span class="fc" id="L152">    }</span>
 
     public void removeYellowEnemy(YellowEnemy finishedEnemy) {
 <span class="nc" id="L155">        Y.remove(finishedEnemy);</span>
@@ -161,8 +161,8 @@ public class EnemyController extends GamePanel {
 <span class="nc" id="L161">    }</span>
 
     public void addRedEnemy(RedEnemy newEnemy) {
-<span class="nc" id="L164">        R.add(newEnemy);</span>
-<span class="nc" id="L165">    }</span>
+<span class="fc" id="L164">        R.add(newEnemy);</span>
+<span class="fc" id="L165">    }</span>
 
     public void removeRedEnemy(RedEnemy finishedEnemy) {
 <span class="nc" id="L168">        R.remove(finishedEnemy);</span>
@@ -174,8 +174,8 @@ public class EnemyController extends GamePanel {
 <span class="nc" id="L174">    }</span>
 
     public void addBlueEnemy(BlueEnemy newEnemy) {
-<span class="nc" id="L177">        B.add(newEnemy);</span>
-<span class="nc" id="L178">    }</span>
+<span class="fc" id="L177">        B.add(newEnemy);</span>
+<span class="fc" id="L178">    }</span>
 
     public void removeBlueEnemy(BlueEnemy finishedEnemy) {
 <span class="nc" id="L181">        B.remove(finishedEnemy);</span>
@@ -187,14 +187,14 @@ public class EnemyController extends GamePanel {
 <span class="nc" id="L187">    }</span>
 
     public ArrayList&lt;RedEnemy&gt; getRed() {
-<span class="nc" id="L190">        return R;</span>
+<span class="fc" id="L190">        return R;</span>
     }
 
     public ArrayList&lt;YellowEnemy&gt; getYellow() {
-<span class="nc" id="L194">        return Y;</span>
+<span class="fc" id="L194">        return Y;</span>
     }
     public ArrayList&lt;BlueEnemy&gt; getBlue() {
-<span class="nc" id="L197">        return B;</span>
+<span class="fc" id="L197">        return B;</span>
     }
 
     public void addBullet(Bullet newBullet) {
