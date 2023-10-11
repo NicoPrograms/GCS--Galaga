@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="_08final.mvc.model.PhysicsTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2023-10-10T23:23:39" hostname="DESKTOP-10Q88AS" time="0.251">
+<testsuite name="_08final.mvc.model.PhysicsTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2023-10-11T20:37:55" hostname="DESKTOP-10Q88AS" time="0.567">
   <properties/>
-  <testcase name="testBlueEnemyCollisionWithBullet()" classname="_08final.mvc.model.PhysicsTest" time="0.164"/>
-  <testcase name="testYellowEnemyCollisionWithBullet()" classname="_08final.mvc.model.PhysicsTest" time="0.018"/>
-  <testcase name="testBlueEnemyCollisionWithShip()" classname="_08final.mvc.model.PhysicsTest" time="0.012"/>
-  <testcase name="testYellowEnemyCollisionWithShip()" classname="_08final.mvc.model.PhysicsTest" time="0.016"/>
-  <testcase name="testShipCollisionWithRedEnemy()" classname="_08final.mvc.model.PhysicsTest" time="0.015"/>
-  <testcase name="testRedEnemyCollisionWithBullet()" classname="_08final.mvc.model.PhysicsTest" time="0.01"/>
-  <testcase name="testRedEnemyCollisionWithShip()" classname="_08final.mvc.model.PhysicsTest" time="0.009"/>
+  <testcase name="testBlueEnemyCollisionWithBullet()" classname="_08final.mvc.model.PhysicsTest" time="0.438"/>
+  <testcase name="testYellowEnemyCollisionWithBullet()" classname="_08final.mvc.model.PhysicsTest" time="0.031"/>
+  <testcase name="testBlueEnemyCollisionWithShip()" classname="_08final.mvc.model.PhysicsTest" time="0.021"/>
+  <testcase name="testYellowEnemyCollisionWithShip()" classname="_08final.mvc.model.PhysicsTest" time="0.02"/>
+  <testcase name="testShipCollisionWithRedEnemy()" classname="_08final.mvc.model.PhysicsTest" time="0.019"/>
+  <testcase name="testRedEnemyCollisionWithBullet()" classname="_08final.mvc.model.PhysicsTest" time="0.012"/>
+  <testcase name="testRedEnemyCollisionWithShip()" classname="_08final.mvc.model.PhysicsTest" time="0.017"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

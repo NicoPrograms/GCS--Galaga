@@ -7,9 +7,7 @@ import _08final.mvc.controller.Game;
 import java.awt.*;
 import java.util.ArrayList;
 
-/**
- * Created by zhuoyuzhu on 11/27/16.
- */
+
 public class Bullet extends Sprite {
 
     private ArrayList<Bullet> b;

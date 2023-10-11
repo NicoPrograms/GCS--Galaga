@@ -7,7 +7,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.sound.sampled.*;
 
 <span class="nc" id="L9">public class Sound {</span>
-<span class="nc" id="L10">	private static float volume = 0.5f;</span>
+<span class="fc" id="L10">	private static float volume = 0.5f;</span>
 
     /**
      * Plays an individual sound file once.
@@ -42,11 +42,11 @@ import javax.sound.sampled.*;
      * */
 	public static Clip clipForLoopFactory(String strPath){
 
-<span class="nc" id="L45">		Clip clp = null;</span>
+<span class="fc" id="L45">		Clip clp = null;</span>
 
 		// this line caused the original exceptions
 		try {
-<span class="nc" id="L49">			AudioInputStream aisStream =</span>
+<span class="fc" id="L49">			AudioInputStream aisStream =</span>
 <span class="nc" id="L50">					  AudioSystem.getAudioInputStream(Sound.class.getResourceAsStream(strPath));</span>
 <span class="nc" id="L51">			clp = AudioSystem.getClip();</span>
 <span class="nc" id="L52">		    clp.open( aisStream );</span>
@@ -54,17 +54,17 @@ import javax.sound.sampled.*;
 
 <span class="nc" id="L55">		} catch (UnsupportedAudioFileException exp) {</span>
 <span class="nc" id="L56">			exp.printStackTrace();</span>
-<span class="nc" id="L57">		} catch(Exception exp){</span>
-<span class="nc" id="L58">			System.out.println(&quot;error&quot;);</span>
+<span class="fc" id="L57">		} catch(Exception exp){</span>
+<span class="fc" id="L58">			System.out.println(&quot;error&quot;);</span>
 <span class="nc" id="L59">		}</span>
 
-<span class="nc" id="L61">		return clp;</span>
+<span class="fc" id="L61">		return clp;</span>
 
 	}
 
 	public static void setVolume(float value) {
-<span class="nc" id="L66">		volume = value;</span>
-<span class="nc" id="L67">	}</span>
+<span class="fc" id="L66">		volume = value;</span>
+<span class="fc" id="L67">	}</span>
 
 	private static void setVolume(Clip clip) {
 <span class="nc bnc" id="L70" title="All 2 branches missed.">		if (clip.isControlSupported(FloatControl.Type.MASTER_GAIN)) {</span>
@@ -74,6 +74,8 @@ import javax.sound.sampled.*;
 		}
 <span class="nc" id="L75">	}</span>
 
-
+	public static float getVolume() {
+<span class="fc" id="L78">		return volume;</span>
+	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

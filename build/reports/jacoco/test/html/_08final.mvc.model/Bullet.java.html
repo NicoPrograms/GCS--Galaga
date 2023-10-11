@@ -7,24 +7,22 @@ import _08final.mvc.controller.Game;
 import java.awt.*;
 import java.util.ArrayList;
 
-/**
- * Created by zhuoyuzhu on 11/27/16.
- */
+
 public class Bullet extends Sprite {
 
     private ArrayList&lt;Bullet&gt; b;
     private Game game;
 
-<span class="fc" id="L18">    private final static Dimension BULLET_DIM = new Dimension(30,50);</span>
+<span class="fc" id="L16">    private final static Dimension BULLET_DIM = new Dimension(30,50);</span>
 
     public Bullet(Point initPos, Game game) {
-<span class="fc" id="L21">        super(initPos, BULLET_DIM, SpriteTexLoader.load(SpriteTexLoader.SpriteTex.FIGHTER_MISSILE));</span>
-<span class="fc" id="L22">        this.game = game;</span>
-<span class="fc" id="L23">    }</span>
+<span class="fc" id="L19">        super(initPos, BULLET_DIM, SpriteTexLoader.load(SpriteTexLoader.SpriteTex.FIGHTER_MISSILE));</span>
+<span class="fc" id="L20">        this.game = game;</span>
+<span class="fc" id="L21">    }</span>
 
     public void tick() {
-<span class="nc" id="L26">        setY(getY()-13);</span>
+<span class="nc" id="L24">        setY(getY()-13);</span>
 
-<span class="nc" id="L28">    }</span>
+<span class="nc" id="L26">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

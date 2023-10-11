@@ -1,11 +1,11 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-Galaga,_08final.images,SpriteTexLoader,63,52,17,6,33,20,17,7,0,3
+Galaga,_08final.images,SpriteTexLoader,57,46,17,6,33,20,17,7,0,3
 Galaga,_08final.images,SpriteTexLoader.SpriteTex,0,129,0,0,0,22,0,1,0,1
 Galaga,_08final.sounds,Sound.new Runnable() {...},28,0,0,0,11,0,2,0,2,0
-Galaga,_08final.sounds,Sound,66,0,2,0,24,0,7,0,6,0
+Galaga,_08final.sounds,Sound,50,18,2,0,16,9,4,4,3,4
 Galaga,_08final.mvc.view,GameFrame,117,0,6,0,41,0,11,0,8,0
 Galaga,_08final.mvc.view,GameObserver,43,0,2,0,15,0,4,0,3,0
-Galaga,_08final.mvc.view,GamePanel,434,0,24,0,92,0,16,0,4,0
+Galaga,_08final.mvc.view,GamePanel,404,0,24,0,92,0,16,0,4,0
 Galaga,_08final.mvc.view,Game_Sub,113,0,16,0,30,0,16,0,8,0
 Galaga,_08final.mvc.view,MenuPanel,146,0,4,0,36,0,6,0,4,0
 Galaga,_08final.mvc.model.Enemys,RedEnemy,275,23,10,0,50,6,13,2,8,2
@@ -14,7 +14,7 @@ Galaga,_08final.mvc.model.Enemys,YellowEnemy,257,23,10,0,44,6,9,2,4,2
 Galaga,_08final.mvc.controller,Game.STATUS,33,0,0,0,6,0,1,0,1,0
 Galaga,_08final.mvc.controller,EnemyController,569,0,44,0,123,0,41,0,19,0
 Galaga,_08final.mvc.controller,Game.new Runnable() {...},14,0,0,0,7,0,2,0,2,0
-Galaga,_08final.mvc.controller,Game,347,0,34,0,117,0,42,0,18,0
+Galaga,_08final.mvc.controller,Game,329,0,34,0,117,0,42,0,18,0
 Galaga,_08final.mvc.model,Bullet,7,17,0,0,2,4,1,2,1,2
 Galaga,_08final.mvc.model,Ship,87,68,10,0,15,21,6,11,1,11
 Galaga,_08final.mvc.model,Triangulo,118,0,4,0,21,0,4,0,2,0

@@ -74,5 +74,7 @@ public class Sound {
 		}
 	}
 
-
+	public static float getVolume() {
+		return volume;
+	}
 }
