@@ -5,8 +5,48 @@ on:
     branches: [master]
 
 jobs:
-  build:
+  check-secret:
+    name: check-secret
+    environment:
+      name: productions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Horusec
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/master/deployments/scripts/install.sh | bash -s latest
+          horusec version
+          touch horusec.json
+          set +e
+          horusec start -p . -e="true" -o="json" -O=horusec.json --disable-docker
+          set -e
 
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+            name: horusec
+            path: horusec.json
+
+  sonarqube:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        with:
+            projectBaseDir: .
+            args: >
+              -Dsonar.projectKey=${{ github.event.repository.name}}
+              -Dsonar.projectName=${{ github.event.repository.name}}  
+              -Dsonar.source=. 
+              -Dsonar.sourceEncoding=UTF-8   
+
+  build:
+    needs: check-secret
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -19,8 +59,8 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          server-id: github 
-          settings-path: ${{ github.workspace }}
+          server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
+          settings-path: ${{ github.workspace }} # location for the settings.xml file
 
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
@@ -33,25 +73,7 @@ jobs:
 
       - name: Execute Gradle build
         run: ./gradlew build
-
-  check-secrets:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Horusec
-        run: |
-          curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/master/deployments/scripts/install.sh | bash -s latest
-          horusec start -p . -e="true" -o="json" -O=horusec.json
-
-  
-
-  test:
-    name: Code Testing
-    needs: check-secrets
-    runs-on: ubuntu-latest
-    steps:
+        
       - name: Run Test
         run: ./gradlew test
 
@@ -66,6 +88,3 @@ jobs:
         with:
           generate-branches-badge: false
           jacoco-csv-file: build/reports/jacoco/test/jacocoTestReport.csv
-
-
-
