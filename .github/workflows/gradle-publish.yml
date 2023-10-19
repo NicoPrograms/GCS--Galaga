@@ -16,7 +16,7 @@ jobs:
       - name: Horusec
         run: |
           curl -k "https://github.com/ZupIT/horusec/releases/latest/download/horusec_win_amd64.exe" -o "./horusec.exe" -L
-          horusec start -p . -e="true" -o="json" -O=horusec.json || true
+          horusec start -p . -e="true" -o="json" -O=horusec.json
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
