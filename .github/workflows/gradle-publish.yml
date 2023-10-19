@@ -28,6 +28,23 @@ jobs:
             name: horusec
             path: horusec.json
 
+  sonarqube:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ squ_de3456ab522c305a7f37c479e8f1b318e3f3a06d }}
+          SONAR_HOST_URL: ${{ http://localhost:9000/ }}
+          with:
+            projectBaseDir: .
+            args: >
+              -Dsonar.projectKey=${{ github.event.repository.name}}
+              -Dsonar.projectName=${{ github.event.repository.name}}  
+              -Dsonar.source=. 
+              -Dsonar.sourceEncoding=UTF-8   
+
   build:
     needs: check-secret
     runs-on: ubuntu-latest
