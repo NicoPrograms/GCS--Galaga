@@ -19,6 +19,7 @@ jobs:
       - name: Run Horusec
         run: |
           ./horusec.exe version
+          ./horusec.exe start -p="./" -e="true"
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
