@@ -16,7 +16,6 @@ jobs:
       - name: Download Horusec
         run: |
           curl -k "https://github.com/ZupIT/horusec/releases/latest/download/horusec_win_amd64.exe" -o "./horusec.exe" -L
-          chmod +x horusec.exe
       - name: Run Horusec
         run: |
           ./horusec.exe start -p="./" -e="true"
