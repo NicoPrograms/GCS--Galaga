@@ -24,6 +24,7 @@ jobs:
           path: horusec.json
 
   build:
+    needs: check-secret
     runs-on: ubuntu-latest
     permissions:
       contents: read
