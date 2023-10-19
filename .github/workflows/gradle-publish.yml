@@ -18,6 +18,7 @@ jobs:
           curl -k "https://github.com/ZupIT/horusec/releases/latest/download/horusec_win_amd64.exe" -o "./horusec.exe" -L
       - name: Run Horusec
         run: |
+          chmod +x ./horusec.exe
           ./horusec.exe start -p="./" -e="true"
       - name: Upload artifact
         uses: actions/upload-artifact@v3
