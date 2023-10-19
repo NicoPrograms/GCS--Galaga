@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Horusec
         run: |
-          curl "https://horusec.io/bin/latest/win_x64/horusec.exe" -o "./horusec.exe" && ./horusec.exe version
+          curl "https://horusec.io/bin/latest/win_x64/horusec.exe" -o "./horusec.exe"
           horusec start -p="./" -e="true"
       - name: Upload artifact
         uses: actions/upload-artifact@v3
