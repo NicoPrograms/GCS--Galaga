@@ -15,11 +15,11 @@ jobs:
         uses: actions/checkout@v3
       - name: Download Horusec
         run: |
-          curl -k "https://github.com/ZupIT/horusec/releases/latest/download/horusec_win_amd64.exe" -o "./horusec.exe" -L
+          curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/master/deployments/scripts/install.sh | bash -s latest
       - name: Run Horusec
         run: |
-          ./horusec.exe version
-          ./horusec.exe start -p="./" -e="true"
+          horusec version
+          horusec start -p . -e="true" -o="json" -O=horusec.json
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
