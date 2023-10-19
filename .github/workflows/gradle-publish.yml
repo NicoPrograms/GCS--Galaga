@@ -19,7 +19,7 @@ jobs:
       - name: Run Horusec
         run: |
           chmod +x ./horusec.exe
-          ./horusec.exe start -p="./" -e="true"
+          ./horusec.exe version
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
