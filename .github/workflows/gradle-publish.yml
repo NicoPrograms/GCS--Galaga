@@ -18,9 +18,8 @@ jobs:
           curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/master/deployments/scripts/install.sh | bash -s latest
           horusec version
           touch horusec.json
-          set +e 
           horusec start -p . -e="true" -o="json" -O=horusec.json --disable-docker
-          set -e
+
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
