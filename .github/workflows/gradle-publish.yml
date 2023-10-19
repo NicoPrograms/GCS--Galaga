@@ -5,8 +5,25 @@ on:
     branches: [master]
 
 jobs:
-  build:
+  check-secret:
+    name: check-secret
+    environment:
+      name: productions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Horusec
+        run: |
+          curl -k "https://github.com/ZupIT/horusec/releases/latest/download/horusec_win_amd64.exe" -o "./horusec.exe" -L
+          horusec start -p . -e="true" -o="json" -O=horusec.json || true
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: horusec
+          path: horusec.json
 
+  build:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -14,10 +31,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Set up JDK 17
+      - name: Set up JDK 8
         uses: actions/setup-java@v3
         with:
-          java-version: '17'
+          java-version: '8'
           distribution: 'temurin'
           server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
           settings-path: ${{ github.workspace }} # location for the settings.xml file
