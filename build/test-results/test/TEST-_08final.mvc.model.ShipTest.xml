@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="_08final.mvc.model.ShipTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2023-10-11T20:37:56" hostname="DESKTOP-10Q88AS" time="0.056">
+<testsuite name="_08final.mvc.model.ShipTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2023-10-12T15:56:41" hostname="DESKTOP-10Q88AS" time="0.066">
   <properties/>
-  <testcase name="testMoveDown()" classname="_08final.mvc.model.ShipTest" time="0.013"/>
-  <testcase name="testMoveLeft()" classname="_08final.mvc.model.ShipTest" time="0.008"/>
+  <testcase name="testMoveDown()" classname="_08final.mvc.model.ShipTest" time="0.014"/>
+  <testcase name="testMoveLeft()" classname="_08final.mvc.model.ShipTest" time="0.009"/>
   <testcase name="testMoveUp()" classname="_08final.mvc.model.ShipTest" time="0.008"/>
-  <testcase name="testSetVelX()" classname="_08final.mvc.model.ShipTest" time="0.007"/>
-  <testcase name="testSetVelY()" classname="_08final.mvc.model.ShipTest" time="0.007"/>
-  <testcase name="testMoveRight()" classname="_08final.mvc.model.ShipTest" time="0.008"/>
+  <testcase name="testSetVelX()" classname="_08final.mvc.model.ShipTest" time="0.008"/>
+  <testcase name="testSetVelY()" classname="_08final.mvc.model.ShipTest" time="0.009"/>
+  <testcase name="testMoveRight()" classname="_08final.mvc.model.ShipTest" time="0.009"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
