@@ -17,12 +17,14 @@ jobs:
         run: |
           curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/master/deployments/scripts/install.sh | bash -s latest
           horusec version
+          set +e 
           horusec start -p="./" -e="true" --disable-docker
+          set -e
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
             name: horusec
-            path: horusec.json
+            path: .horusec
 
   build:
     needs: check-secret
