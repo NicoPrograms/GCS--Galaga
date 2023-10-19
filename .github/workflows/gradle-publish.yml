@@ -13,15 +13,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Horusec
+      - name: Download Horusec
         run: |
-          curl "https://horusec.io/bin/latest/win_x64/horusec.exe" -o "./horusec.exe"
-          horusec start -p="./" -e="true"
+            curl "https://horusec.io/bin/latest/win_x64/horusec.exe" -o "./horusec.exe"
+            chmod +x horusec.exe
+      - name: Run Horusec
+        run: |
+            ./horusec.exe start -p="./" -e="true"
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: horusec
-          path: horusec.json
+            name: horusec
+            path: horusec.json
 
   build:
     needs: check-secret
