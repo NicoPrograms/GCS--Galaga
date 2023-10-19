@@ -13,13 +13,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Download Horusec
+      - name: Horusec
         run: |
           curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/master/deployments/scripts/install.sh | bash -s latest
-      - name: Run Horusec
-        run: |
           horusec version
-          horusec start -p . -e="true" -o="json" -O=horusec.json
+          horusec start -p="./" -e="true"
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
