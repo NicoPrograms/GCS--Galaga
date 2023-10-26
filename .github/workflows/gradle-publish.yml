@@ -21,29 +21,16 @@ jobs:
           set +e
           horusec start -p . -e="true" -o="json" -O=horusec.json --disable-docker
           set -e
-
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Run Security Tools
+        run: python ./.github/scripts/security-tools.py horusec.json horusec
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
             name: horusec
             path: horusec.json
-
-  sonarqube:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: SonarQube Scan
-        uses: sonarsource/sonarqube-scan-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        with:
-            projectBaseDir: .
-            args: >
-              -Dsonar.projectKey=${{ github.event.repository.name}}
-              -Dsonar.projectName=${{ github.event.repository.name}}  
-              -Dsonar.source=. 
-              -Dsonar.sourceEncoding=UTF-8   
 
   build:
     needs: check-secret
