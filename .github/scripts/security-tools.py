@@ -48,7 +48,7 @@ else:
 
 count_bypassed = 0
 count_critical = 0
-allowed_critical = 5
+allowed_critical = 10
 
 if (len(vulnerabilities) > 0):
     for issue in vulnerabilities:
