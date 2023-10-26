@@ -19,7 +19,7 @@ jobs:
           horusec version
           touch horusec.json
           set +e
-          horusec start -p . -e="true" -o="json" -O=horusec.json --disable-docker
+          horusec start -p . -e="true" -o="json" -O=horusec.json --disable-docker --information-severity=true
           set -e
       - uses: actions/setup-python@v4
         with:
