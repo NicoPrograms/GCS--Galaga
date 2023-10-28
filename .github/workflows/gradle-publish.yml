@@ -58,7 +58,6 @@ jobs:
           restore-keys: ${{ runner.os }}-gradle
       - name: Make gradlew executable
         run: chmod +x ./gradlew
-
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
@@ -102,4 +101,5 @@ jobs:
 
       - name: Run Coverage Verification
         run: ./gradlew jacocoTestCoverageVerification
+
 
