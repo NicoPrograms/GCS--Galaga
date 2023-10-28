@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'maven-publish'
     id 'jacoco'
+    id "org.sonarqube" version "4.4.1.3373"
 }
 
 group '_08final.mvc.model'
@@ -19,6 +20,13 @@ dependencies {
 java {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
+}
+
+sonar {
+  properties {
+    property "sonar.projectKey", "NicoPrograms_GCS--Galaga"
+    property "sonar.organization", "nicoprograms"
+    property "sonar.host.url", "https://sonarcloud.io"
 }
 
 test {
