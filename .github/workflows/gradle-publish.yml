@@ -36,8 +36,6 @@ jobs:
     name: Build and analyze
     runs-on: ubuntu-latest
     steps:
-      - name: Disable Automatic Analysis
-        run: curl -X POST -u ${{ secrets.SONAR_TOKEN }} "https://sonarcloud.io/api/automatic-analysis/disable?project=${{ secrets.SONAR_TOKEN }}"
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
@@ -65,8 +63,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: ./gradlew build sonar --info
-      - name: Enable Automatic Analysis
-        run: curl -X POST -u ${{ secrets.SONAR_TOKEN }} "https://sonarcloud.io/api/automatic-analysis/enable?project=${{ secrets.SONAR_TOKEN }}"
+
   
   build:
     needs: [check-secret, sonarqube]
