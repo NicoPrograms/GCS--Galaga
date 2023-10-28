@@ -14,7 +14,7 @@ jobs:
         id: import-secrets
         uses: hashicorp/vault-action@v2
         with:
-          url: https://vault.mycompany.com:8200
+          url: https://portal.cloud.hashicorp.com/services/secrets/apps/Galaga/secrets?importActive=false&project_id=889fad23-0cd7-4483-a6bd-2bff679ad9e5
           token: ${{ secrets.VAULT_TOKEN }}
               
           secrets: |
