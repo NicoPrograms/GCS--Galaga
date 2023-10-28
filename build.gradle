@@ -27,6 +27,7 @@ sonar {
     property "sonar.projectKey", "NicoPrograms_GCS--Galaga"
     property "sonar.organization", "nicoprograms"
     property "sonar.host.url", "https://sonarcloud.io"
+  }
 }
 
 test {
