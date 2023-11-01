@@ -29,8 +29,8 @@ jobs:
               "client_secret": "'$HCP_CLIENT_SECRET'"
             }')
           
-          echo "Respuesta de curl: $response"
-          echo "Valor del token: $(echo $response | jq -r .access_token)"
+            echo "Respuesta de curl: $response"
+            echo "Valor del token: $(echo $response | jq -r .access_token)"
 
       - name: Imprimir variables de entorno
         run: |
