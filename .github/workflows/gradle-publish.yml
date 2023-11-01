@@ -22,10 +22,10 @@ jobs:
           --data '{
             "audience": "https://api.hashicorp.cloud",
             "grant_type": "client_credentials",
-            "client_id": "$HCP_CLIENT_ID",
-            "client_secret": "$HCP_CLIENT_SECRET"
+            "client_id": "'$HCP_CLIENT_ID'",
+            "client_secret": "'$HCP_CLIENT_SECRET'"
           }' | jq -r .access_token)
-          echo "HCP_API_TOKEN=$HCP_API_TOKEN" >> $GITHUB_ENV
+
       - name: Imprimir variables de entorno
         run: |
           echo HCP_CLIENT_ID: $HCP_CLIENT_ID
