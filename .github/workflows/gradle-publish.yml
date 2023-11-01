@@ -9,14 +9,16 @@ jobs:
   vault:
     name: Vault
     runs-on: ubuntu-latest
-    container:
-      image: bash:5.1
     env:
       HCP_CLIENT_ID: ZXDpc19hkd3Kj4b4hquEdVj9ZzhsjfcJ
       HCP_CLIENT_SECRET: VQPf3xKmiTN3mUUyHCp-4C5wEf3iV1xtdOFPZMhFn1JCFKdk_mAYRMhwwDPzPb9Y
     steps:
       - name: Checkout del repositorio
         uses: actions/checkout@v2
+      - name: Instalar curl y jq
+        run: |
+            apt-get update
+            apt-get install -y curl jq
       - name: Obtener Token de Acceso HCP
         run: |
           HCP_API_TOKEN=$(curl --location 'https://auth.hashicorp.com/oauth/token' \
