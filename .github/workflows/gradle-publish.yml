@@ -15,10 +15,6 @@ jobs:
     steps:
       - name: Checkout del repositorio
         uses: actions/checkout@v2
-      - name: Instalar curl y jq
-        run: |
-            apt-get update
-            apt-get install -y curl jq
       - name: Obtener Token de Acceso HCP
         run: |
           HCP_API_TOKEN=$(curl --location 'https://auth.hashicorp.com/oauth/token' \
