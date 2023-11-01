@@ -26,6 +26,10 @@ jobs:
             "client_id": "'$HCP_CLIENT_ID'",
             "client_secret": "'$HCP_CLIENT_SECRET'"
           }' | jq -r .access_token)
+      - name: Obtener sonar token
+        run: |
+          SONAR_TOKEN=$(curl --location "https://api.cloud.hashicorp.com/secrets/2023-06-13/organizations/6fbcbccd-928a-47fc-b943-8487abf5d659/projects/889fad23-0cd7-4483-a6bd-2bff679ad9e5/apps/Galaga/open" --request GET --header "Authorization: Bearer $HCP_API_TOKEN" | jq -r '.SONAR_TOKEN')
+          echo "SONAR_TOKEN: $SONAR_TOKEN"
             
   check-secret:
     name: check-secret
@@ -81,10 +85,6 @@ jobs:
           restore-keys: ${{ runner.os }}-gradle
       - name: Make gradlew executable
         run: chmod +x ./gradlew
-      - name: Obtener sonar token
-        run: |
-          SONAR_TOKEN=$(curl --location "https://api.cloud.hashicorp.com/secrets/2023-06-13/organizations/6fbcbccd-928a-47fc-b943-8487abf5d659/projects/889fad23-0cd7-4483-a6bd-2bff679ad9e5/apps/Galaga/open" --request GET --header "Authorization: Bearer $HCP_API_TOKEN" | jq)
-          echo "SONAR_TOKEN: $SONAR_TOKEN"
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
