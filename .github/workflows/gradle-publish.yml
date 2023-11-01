@@ -14,8 +14,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Autenticación en Vault
         run: |
-          export HCP_CLIENT_ID=oLqodpeZU1C0qIgcVVpSqDqV7QRXMKYF
-          export HCP_CLIENT_SECRET=EI2rk2pa46khTJLd6soyJ8KglN0MmsK7lCZHMdroCauqcxzkskldp1MC3FHPcCXP
+          export HCP_CLIENT_ID=9RN7dXQtvsWhtA9pwQUMbaEX8wdG7Vpr
+          export HCP_CLIENT_SECRET=yeLfSOfxSs7xwddkQ0oV_RGggwmC2QBTPq3hXtuFQ_WhemNBB4QjhdX2Ka1xFqBj
       - name: Obtener Token de Acceso HCP
         run: |
           HCP_API_TOKEN=$(curl --location 'https://auth.hashicorp.com/oauth/token' \
@@ -28,8 +28,11 @@ jobs:
           }' | jq -r .access_token)
       - name: Obtener sonar token
         run: |
-          SONAR_TOKEN=$(curl --location "https://api.cloud.hashicorp.com/secrets/2023-06-13/organizations/6fbcbccd-928a-47fc-b943-8487abf5d659/projects/889fad23-0cd7-4483-a6bd-2bff679ad9e5/apps/Galaga/open" --request GET --header "Authorization: Bearer $HCP_API_TOKEN" | jq -r '.SONAR_TOKEN')
-          echo "SONAR_TOKEN: $SONAR_TOKEN"
+          SONAR_TOKEN=$(curl \
+          --location "https://api.cloud.hashicorp.com/secrets/2023-06-13/organizations/6fbcbccd-928a-47fc-b943-8487abf5d659/projects/889fad23-0cd7-4483-a6bd-2bff679ad9e5/apps/Galaga/open" \
+          --request GET \
+          --header "Authorization: Bearer $HCP_API_TOKEN" | jq -r '.secreto')
+          echo "El secreto es: $secreto"
             
   check-secret:
     name: check-secret
