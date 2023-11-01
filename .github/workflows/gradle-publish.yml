@@ -10,15 +10,22 @@ jobs:
     name: Vault
     runs-on: ubuntu-latest
     steps:
-      - name: Import Secrets
-        id: import-secrets
-        uses: hashicorp/vault-action@v2
-        with:
-          url: https://portal.cloud.hashicorp.com/services/secrets/apps/Galaga/secrets?importActive=false&project_id=889fad23-0cd7-4483-a6bd-2bff679ad9e5
-          token: ${{ secrets.VAULT_TOKEN }}
-              
-          secrets: |
-            secret/SONAR_TOKEN | SONAR_TOKEN ;
+      - name: Checkout del repositorio
+        uses: actions/checkout@v2
+      - name: Autenticación en Vault
+        run: |
+          export HCP_CLIENT_ID=oLqodpeZU1C0qIgcVVpSqDqV7QRXMKYF
+          export HCP_CLIENT_SECRET=EI2rk2pa46khTJLd6soyJ8KglN0MmsK7lCZHMdroCauqcxzkskldp1MC3FHPcCXP
+      - name: Obtener Token de Acceso HCP
+        run: |
+          HCP_API_TOKEN=$(curl --location 'https://auth.hashicorp.com/oauth/token' \
+          --header 'content-type: application/json' \
+          --data '{
+            "audience": "https://api.hashicorp.cloud",
+            "grant_type": "client_credentials",
+            "client_id": "'$HCP_CLIENT_ID'",
+            "client_secret": "'$HCP_CLIENT_SECRET'"
+          }' | jq -r .access_token)
             
   check-secret:
     name: check-secret
@@ -34,7 +41,7 @@ jobs:
           horusec version
           touch horusec.json
           set +e
-          horusec start -p . -e="true" -o="json" -O=horusec.json --disable-docker --information-severity=true --log-level=DEBUG
+          horusec start -p . -e="true" -o="json" -O=horusec.json --disable-docker --information-severity=true --log-level=DEBUG%
           set -e
       - uses: actions/setup-python@v4
         with:
@@ -77,7 +84,8 @@ jobs:
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ steps.vault.outputs.SONAR_TOKEN }}
+          SONAR_TOKEN: ${{ curl \ --location "https://api.cloud.hashicorp.com/secrets/2023-06-13/organizations/6fbcbccd-928a-47fc-b943-8487abf5d659/projects/889fad23-0cd7-4483-a6bd-2bff679ad9e5/apps/Galaga/open" \ --request GET \
+          --header "Authorization: Bearer $HCP_API_TOKEN" | jq }}
         run: ./gradlew build sonar --info
   
   build:
