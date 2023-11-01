@@ -26,7 +26,7 @@ jobs:
             "client_id": "'$HCP_CLIENT_ID'",
             "client_secret": "'$HCP_CLIENT_SECRET'"
           }' | jq -r .access_token)
-          echo "HCP_API_TOKEN: $HCP_API_TOKEN"
+          echo HCP_API_TOKEN: $HCP_API_TOKEN
       - name: Obtener sonar token
         run: |
           SONAR_TOKEN=$(curl \
