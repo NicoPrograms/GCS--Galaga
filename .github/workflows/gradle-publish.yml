@@ -40,9 +40,9 @@ jobs:
       - name: Obtener sonar token
         run: |
           SONAR_TOKEN=%( curl \
-          --location "https://api.cloud.hashicorp.com/secrets/2023-06-13/organizations/6fbcbccd-928a-47fc-b943-8487abf5d659/projects/889fad23-0cd7-4483-a6bd-2bff679ad9e5/apps/Galaga/open" \
+          --location "https://api.cloud.hashicorp.com/secrets/2023-06-13/organizations/6fbcbccd-928a-47fc-b943-8487abf5d659/projects/889fad23-0cd7-4483-a6bd-2bff679ad9e5/apps/Galaga/open/SONAR_TOKEN" \
           --request GET \
-          --header "Authorization: Bearer $access_token" | jq)
+          --header "Authorization: Bearer $access_token" | jq -r .token)
           
           echo SONAR_TOKEN: $SONAR_TOKEN
 
