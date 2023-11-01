@@ -9,19 +9,19 @@ jobs:
   vault:
     name: Vault
     runs-on: ubuntu-latest
+    env:
+      HCP_CLIENT_ID: 9RN7dXQtvsWhtA9pwQUMbaEX8wdG7Vpr
+      HCP_CLIENT_SECRET: yeLfSOfxSs7xwddkQ0oV_RGggwmC2QBTPq3hXtuFQ_WhemNBB4QjhdX2Ka1xFqBj
     steps:
       - name: Checkout del repositorio
         uses: actions/checkout@v2
-      - name: Autenticación en Vault
-        run: |
-          export HCP_CLIENT_ID=9RN7dXQtvsWhtA9pwQUMbaEX8wdG7Vpr
-          export HCP_CLIENT_SECRET=yeLfSOfxSs7xwddkQ0oV_RGggwmC2QBTPq3hXtuFQ_WhemNBB4QjhdX2Ka1xFqBj
       - name: Obtener Token de Acceso HCP
         run: |
           HCP_API_TOKEN=$(curl --location 'https://auth.hashicorp.com/oauth/token' \
           --header 'content-type: application/json' \
           --data '{
             "audience": "https://api.hashicorp.cloud",
+            "grant_type": "client_credentials",
             "client_id": "'$HCP_CLIENT_ID'",
             "client_secret": "'$HCP_CLIENT_SECRET'"
           }' | jq -r .access_token)
