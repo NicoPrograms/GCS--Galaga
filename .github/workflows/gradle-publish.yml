@@ -17,22 +17,26 @@ jobs:
         uses: actions/checkout@v2
       - name: Verificar jq
         run: jq --version
-      - name: Obtener Token de Acceso HCP
+      - name: Obtener respuesta de curl
         run: |
-          export HCP_API_TOKEN=$(curl --location 'https://auth.hashicorp.com/oauth/token' \
+          response=$(curl --location 'https://auth.hashicorp.com/oauth/token' \
           --header 'content-type: application/json' \
           --data '{
             "audience": "https://api.hashicorp.cloud",
             "grant_type": "client_credentials",
-            "client_id": "$HCP_CLIENT_ID",
-            "client_secret": "$HCP_CLIENT_SECRET"
-          }' | jq -r .access_token)
+            "client_id": "'$HCP_CLIENT_ID'",
+            "client_secret": "'$HCP_CLIENT_SECRET'"
+          }')
+
+          echo "Respuesta de curl: $response"
+          echo "Valor del token: $(echo $response | jq -r .access_token)"
+
 
       - name: Imprimir variables de entorno
         run: |
           echo HCP_CLIENT_ID: $HCP_CLIENT_ID
           echo HCP_CLIENT_SECRET: $HCP_CLIENT_SECRET
-          echo HCP_API_TOKEN: $HCP_API_TOKEN
+
       - name: Obtener sonar token
         run: |
           SONAR_TOKEN=$(curl \
