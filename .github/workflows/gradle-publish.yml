@@ -20,31 +20,30 @@ jobs:
       - name: Obtener Token de Acceso HCP
         id: obtener-token
         run: |
-          response=$(curl --location 'https://auth.hashicorp.com/oauth/token' \
-          --header 'content-type: application/json' \
-          --data '{
-            "audience": "https://api.hashicorp.cloud",
-            "grant_type": "client_credentials",
-            "client_id": "'$HCP_CLIENT_ID'",
-            "client_secret": "'$HCP_CLIENT_SECRET'"
-          }')
-
-          echo "Respuesta de curl: $response"
-          echo "Valor del token: $(echo $response | jq -r .access_token)"
-          echo "::set-output name=respuesta::$response"
+            response=$(curl --location 'https://auth.hashicorp.com/oauth/token' \
+            --header 'content-type: application/json' \
+            --data '{
+              "audience": "https://api.hashicorp.cloud",
+              "grant_type": "client_credentials",
+              "client_id": "'$HCP_CLIENT_ID'",
+              "client_secret": "'$HCP_CLIENT_SECRET'"
+            }')
+            
+            echo "::set-output name=respuesta::$response"
 
       - name: Imprimir variables de entorno
         run: |
           echo HCP_CLIENT_ID: $HCP_CLIENT_ID
           echo HCP_CLIENT_SECRET: $HCP_CLIENT_SECRET
 
-      - name: Obtener sonar token
+      - name: Obtener valor del token de Sonar
         run: |
-          SONAR_TOKEN=$(curl \
-          --location "https://api.cloud.hashicorp.com/secrets/2023-06-13/organizations/6fbcbccd-928a-47fc-b943-8487abf5d659/projects/889fad23-0cd7-4483-a6bd-2bff679ad9e5/apps/Galaga/open/SONAR_TOKEN" \
-          --request GET \
-          --header "Authorization: Bearer ${{ steps.obtener-token.outputs.respuesta }} | jq)
-          echo El secreto es: $SONAR_TOKEN
+            SONAR_TOKEN=$(curl --location "https://api.cloud.hashicorp.com/secrets/2023-06-13/organizations/6fbcbccd-928a-47fc-b943-8487abf5d659/projects/889fad23-0cd7-4483-a6bd-2bff679ad9e5/apps/Galaga/open/SONAR_TOKEN" \
+            --request GET \
+            --header "Authorization: Bearer ${{ steps.obtener-token.outputs.respuesta | jq -r .access_token }}" \
+            | jq -r '.data.value')
+            
+            echo "El secreto es: $SONAR_TOKEN"
             
   check-secret:
     name: check-secret
