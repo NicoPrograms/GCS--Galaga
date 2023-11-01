@@ -29,7 +29,7 @@ jobs:
         run: |
           echo HCP_CLIENT_ID: $HCP_CLIENT_ID
           echo HCP_CLIENT_SECRET: $HCP_CLIENT_SECRET
-          echo HCP_API_TOKEN: $HCP_API_TOKEN
+          echo HCP_API_TOKEN: $access_token
       - name: Obtener sonar token
         run: |
           SONAR_TOKEN=$(curl \
