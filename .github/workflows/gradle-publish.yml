@@ -22,8 +22,8 @@ jobs:
           --data '{
             "audience": "https://api.hashicorp.cloud",
             "grant_type": "client_credentials",
-            "client_id": "$HCP_CLIENT_ID",
-            "client_secret": "$HCP_CLIENT_SECRET"
+            "client_id": $HCP_CLIENT_ID,
+            "client_secret": $HCP_CLIENT_SECRET
           }' | jq -r .access_token)
       - name: Imprimir variables de entorno
         run: |
