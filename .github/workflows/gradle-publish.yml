@@ -10,8 +10,8 @@ jobs:
     name: Vault
     runs-on: ubuntu-latest
     env:
-      HCP_CLIENT_ID: 9RN7dXQtvsWhtA9pwQUMbaEX8wdG7Vpr
-      HCP_CLIENT_SECRET: yeLfSOfxSs7xwddkQ0oV_RGggwmC2QBTPq3hXtuFQ_WhemNBB4QjhdX2Ka1xFqBj
+      HCP_CLIENT_ID: ZXDpc19hkd3Kj4b4hquEdVj9ZzhsjfcJ
+      HCP_CLIENT_SECRET: VQPf3xKmiTN3mUUyHCp-4C5wEf3iV1xtdOFPZMhFn1JCFKdk_mAYRMhwwDPzPb9Y
     steps:
       - name: Checkout del repositorio
         uses: actions/checkout@v2
