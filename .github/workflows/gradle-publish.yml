@@ -97,7 +97,7 @@ jobs:
 
       - name: Leer sonar token
         run: |
-            SONAR_TOKEN=$(cat sonar-token.txt)
+            SONAR_TOKEN=$(cat sonar_token.txt)
             echo "SONAR_TOKEN: $SONAR_TOKEN"
       - uses: actions/checkout@v3
         with:
