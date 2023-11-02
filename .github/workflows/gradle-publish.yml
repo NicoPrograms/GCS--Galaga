@@ -43,6 +43,7 @@ jobs:
           
           echo "Respuesta SONAR_TOKEN: $SONAR_TOKEN"
           echo "SONAR_TOKEN=$SONAR_TOKEN" >> $GITHUB_ENV   
+          touch sonar_token.txt
           echo "$SONAR_TOKEN" > sonar_token.txt
       - name: Cargar sonar token como artefacto
         uses: actions/upload-artifact@v2
