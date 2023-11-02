@@ -42,7 +42,7 @@ jobs:
         run: |
           echo "HCP_API_TOKEN: $HCP_API_TOKEN"
           curl -v \
-          --location "https://api.cloud.hashicorp.com/secrets/2023-06-13/organizations/6fbcbccd-928a-47fc-b943-8487abf5d659/projects/889fad23-0cd7-4483-a6bd-2bff679ad9e5/apps" \
+          --location "https://api.cloud.hashicorp.com/secrets/2023-06-13/organizations/6fbcbccd-928a-47fc-b943-8487abf5d659/projects/889fad23-0cd7-4483-a6bd-2bff679ad9e5/apps/Galaga/secrets" \
           --request GET \
           --header "Authorization: Bearer $HCP_API_TOKEN" | jq
           
