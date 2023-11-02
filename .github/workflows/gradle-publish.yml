@@ -20,7 +20,7 @@ jobs:
       - name: Obtener Token de Acceso HCP
         id: obtener-token
         run: |
-            HCP_API_TOKEN=$(curl -v --location 'https://auth.hashicorp.com/oauth/token' \
+            HCP_API_TOKEN=$(curl --location 'https://auth.hashicorp.com/oauth/token' \
             --header 'content-type: application/json' \
             --data '{
               "audience": "https://api.hashicorp.cloud",
@@ -41,10 +41,13 @@ jobs:
       - name: Obtener sonar token
         run: |
           echo "HCP_API_TOKEN: $HCP_API_TOKEN"
-          curl -v \
+          SONAR_TOKEN=$(curl \
           --location "https://api.cloud.hashicorp.com/secrets/2023-06-13/organizations/6fbcbccd-928a-47fc-b943-8487abf5d659/projects/889fad23-0cd7-4483-a6bd-2bff679ad9e5/apps/Galaga/secrets" \
           --request GET \
-          --header "Authorization: Bearer $HCP_API_TOKEN" | jq
+          --header "Authorization: Bearer $HCP_API_TOKEN" | jq -r .SONAR_TOKEN)
+          
+          echo "Respuesta SONAR_TOKEN: $SONAR_TOKEN"
+          echo "SONAR_TOKEN=$SONAR_TOKEN" >> $GITHUB_ENV   
           
 
   check-secret:
@@ -104,7 +107,7 @@ jobs:
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_TOKEN: $SONAR_TOKEN
         run: ./gradlew build sonar --info
   
   build:
