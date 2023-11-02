@@ -30,7 +30,7 @@ jobs:
             }' | jq -r .access_token)
             
             echo "Respuesta de curl: $response"
-            echo "::set-output name=access_token::$response"
+            echo "::set-env name=ACCESS_TOKEN::$response"
            
 
       - name: Imprimir variables de entorno
