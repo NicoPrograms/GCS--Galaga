@@ -30,7 +30,7 @@ jobs:
             }' | jq -r .access_token)
             
             echo "Respuesta de curl: $HCP_API_TOKEN"
-           
+            echo "HCP_API_TOKEN=$HCP_API_TOKEN" >> $GITHUB_ENV           
 
       - name: Imprimir variables de entorno
         run: |
