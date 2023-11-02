@@ -49,12 +49,7 @@ jobs:
           echo HCP_CLIENT_ID: $HCP_CLIENT_ID
           echo HCP_CLIENT_SECRET: $HCP_CLIENT_SECRET
           echo HCP_API_TOKEN: $HCP_API_TOKEN
-          echo SONAR_TOKEN: $SONAR_TOKEN
-      - name: Guardar SONAR_TOKEN como artefacto
-        run: |
-          echo "$SONAR_TOKEN" > sonar_token.txt
-          echo "::set-output name=sonar_token::sonar_token.txt"
-          
+          echo SONAR_TOKEN: $SONAR_TOKEN       
 
   check-secret:
     name: check-secret
@@ -88,14 +83,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: [vault]
     steps:
-      - name: Descargar artefactos
-        uses: actions/download-artifact@v2
-        with:
-          name: sonar_token
-      - name: Leer SONAR_TOKEN
+      - name: sonar-token
         run: |
-          SONAR_TOKEN=$(cat sonar_token.txt)
-          echo "SONAR_TOKEN: $SONAR_TOKEN"
+          echo "SONAR_TOKEN: ${{ env.SONAR_TOKEN }}"
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
