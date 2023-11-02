@@ -50,7 +50,10 @@ jobs:
           echo HCP_CLIENT_SECRET: $HCP_CLIENT_SECRET
           echo HCP_API_TOKEN: $HCP_API_TOKEN
           echo SONAR_TOKEN: $SONAR_TOKEN
-         
+      - name: Guardar SONAR_TOKEN como artefacto
+        run: |
+          echo "$SONAR_TOKEN" > sonar_token.txt
+          echo "::set-output name=sonar_token::sonar_token.txt"
           
 
   check-secret:
@@ -81,14 +84,17 @@ jobs:
             path: horusec.json
 
   sonarqube:
-    needs: vault
     name: Build and analyze
     runs-on: ubuntu-latest
-    env:
-      SONAR_TOKEN: ${{ needs.vault.outputs.SONAR_TOKEN }}
+    needs: [vault]
     steps:
-      - name: sonar_token
+      - name: Descargar artefactos
+        uses: actions/download-artifact@v2
+        with:
+          name: sonar_token
+      - name: Leer SONAR_TOKEN
         run: |
+          SONAR_TOKEN=$(cat sonar_token.txt)
           echo "SONAR_TOKEN: $SONAR_TOKEN"
       - uses: actions/checkout@v3
         with:
