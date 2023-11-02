@@ -84,6 +84,8 @@ jobs:
     needs: vault
     name: Build and analyze
     runs-on: ubuntu-latest
+    env:
+      SONAR_TOKEN: ${{ needs.vault.outputs.SONAR_TOKEN }}
     steps:
       - name: sonar_token
         run: |
