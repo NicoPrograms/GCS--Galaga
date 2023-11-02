@@ -43,8 +43,8 @@ jobs:
           --location "https://api.cloud.hashicorp.com/secrets/2023-06-13/organizations/6fbcbccd-928a-47fc-b943-8487abf5d659/projects/889fad23-0cd7-4483-a6bd-2bff679ad9e5/apps/Galaga/open/SONAR_TOKEN" \
           --request GET \
           --header "Authorization: Bearer $access_token" | jq)
-          sonar_token=$(echo $SONAR_TOKEN | jq -r .sonar_token)
-          echo "Valor del token Sonar: $(echo $SONAR_TOKEN | jq -r .sonar_token)"
+          sonar_token=$(echo $SONAR_TOKEN | jq -r .SONAR_TOKEN)
+          echo "Valor del token Sonar: $(echo $SONAR_TOKEN | jq -r .SONAR_TOKEN)"
 
   check-secret:
     name: check-secret
