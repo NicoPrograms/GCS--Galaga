@@ -32,12 +32,6 @@ jobs:
             echo "Respuesta de curl: $HCP_API_TOKEN"
             echo "HCP_API_TOKEN=$HCP_API_TOKEN" >> $GITHUB_ENV           
 
-      - name: Imprimir variables de entorno
-        run: |
-          echo HCP_CLIENT_ID: $HCP_CLIENT_ID
-          echo HCP_CLIENT_SECRET: $HCP_CLIENT_SECRET
-          echo HCP_API_TOKEN: $HCP_API_TOKEN
-
       - name: Obtener sonar token
         id: sonar-token
         run: |
@@ -49,6 +43,13 @@ jobs:
           
           echo "Respuesta SONAR_TOKEN: $SONAR_TOKEN"
           echo "SONAR_TOKEN=$SONAR_TOKEN" >> $GITHUB_ENV   
+
+      - name: Imprimir variables de entorno
+        run: |
+          echo HCP_CLIENT_ID: $HCP_CLIENT_ID
+          echo HCP_CLIENT_SECRET: $HCP_CLIENT_SECRET
+          echo HCP_API_TOKEN: $HCP_API_TOKEN
+          echo SONAR_TOKEN: $SONAR_TOKEN
          
           
 
@@ -109,7 +110,7 @@ jobs:
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ env.SONAR_TOKEN }}
+          SONAR_TOKEN: ${{ SONAR_TOKEN }}
         run: ./gradlew build sonar --info
   
   build:
