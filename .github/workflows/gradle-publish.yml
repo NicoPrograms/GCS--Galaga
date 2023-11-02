@@ -39,6 +39,7 @@ jobs:
           echo HCP_API_TOKEN: $HCP_API_TOKEN
 
       - name: Obtener sonar token
+        id: sonar-token
         run: |
           echo "HCP_API_TOKEN: $HCP_API_TOKEN"
           SONAR_TOKEN=$(curl \
@@ -107,7 +108,7 @@ jobs:
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: $SONAR_TOKEN
+          SONAR_TOKEN: ${{ steps.sonar-token.outputs.SONAR_TOKEN }}
         run: ./gradlew build sonar --info
   
   build:
