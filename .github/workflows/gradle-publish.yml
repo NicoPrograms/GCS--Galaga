@@ -30,7 +30,6 @@ jobs:
             }' | jq -r .access_token)
             
             echo "Respuesta de curl: $response"
-            echo "access_token=$response" >> $GITHUB_STATE
            
 
       - name: Imprimir variables de entorno
@@ -40,11 +39,10 @@ jobs:
 
       - name: Obtener sonar token
         run: |
-          access_token=$access_token
           SONAR_TOKEN=$(curl \
-          --location "https://api.cloud.hashicorp.com/secrets/2023-06-13/organizations/6fbcbccd-928a-47fc-b943-8487abf5d659/projects/889fad23-0cd7-4483-a6bd-2bff679ad9e5/apps/Galaga/open" \
+          --location "https://api.cloud.hashicorp.com/secrets/2023-06-13/organizations/6fbcbccd-928a-47fc-b943-8487abf5d659/projects/889fad23-0cd7-4483-a6bd-2bff679ad9e5/apps/Galaga/secrets/SONAR_TOKEN" \
           --request GET \
-          --header "Authorization: Bearer $access_token" | jq)
+          --header "Authorization: Bearer $response" | jq)
           
           echo "Respuesta JSON: $SONAR_TOKEN"
 
