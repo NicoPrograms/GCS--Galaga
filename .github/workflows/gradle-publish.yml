@@ -48,6 +48,7 @@ jobs:
           --header "Authorization: Bearer $HCP_API_TOKEN" | jq -r '.secret.version.value')
           
           echo "Respuesta SONAR_TOKEN: $SONAR_TOKEN"
+          echo "SONAR_TOKEN=$SONAR_TOKEN" >> $GITHUB_ENV   
          
           
 
@@ -108,7 +109,7 @@ jobs:
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ steps.sonar-token.outputs.SONAR_TOKEN }}
+          SONAR_TOKEN: ${{ env.SONAR_TOKEN }}
         run: ./gradlew build sonar --info
   
   build:
