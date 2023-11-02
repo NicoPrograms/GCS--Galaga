@@ -20,7 +20,7 @@ jobs:
       - name: Obtener Token de Acceso HCP
         id: obtener-token
         run: |
-            response=$(curl -v --location 'https://auth.hashicorp.com/oauth/token' \
+            HCP_API_TOKEN=$(curl -v --location 'https://auth.hashicorp.com/oauth/token' \
             --header 'content-type: application/json' \
             --data '{
               "audience": "https://api.hashicorp.cloud",
@@ -29,7 +29,7 @@ jobs:
               "client_secret": "'$HCP_CLIENT_SECRET'"
             }' | jq -r .access_token)
             
-            echo "Respuesta de curl: $response"
+            echo "Respuesta de curl: $HCP_API_TOKEN"
            
 
       - name: Imprimir variables de entorno
@@ -42,7 +42,7 @@ jobs:
           curl -v \
           --location "https://api.cloud.hashicorp.com/secrets/2023-06-13/organizations/6fbcbccd-928a-47fc-b943-8487abf5d659/projects/889fad23-0cd7-4483-a6bd-2bff679ad9e5/apps" \
           --request GET \
-          --header "Authorization: Bearer $response" | jq
+          --header "Authorization: Bearer $HCP_API_TOKEN" | jq
           
 
   check-secret:
