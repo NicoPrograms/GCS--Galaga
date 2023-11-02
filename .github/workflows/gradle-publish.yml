@@ -30,7 +30,7 @@ jobs:
             }' | jq -r .access_token)
             
             echo "Respuesta de curl: $response"
-            echo "::set-env name=ACCESS_TOKEN::$response"
+            echo "access_token=$response" >> $GITHUB_STATE
            
 
       - name: Imprimir variables de entorno
