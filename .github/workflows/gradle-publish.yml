@@ -197,11 +197,21 @@ jobs:
       - name: Execute Gradle build
         run: ./gradlew build createJar  # <-- Agrega la tarea createJar aquí
   
+      - name: Depurar rutas
+        run: |
+          pwd
+          ls -al ./build/libs/
+          ls -al /home/runner/work/GCS--Galaga/GCS--Galaga/
+  
+      - name: Crear directorio de destino
+        run: mkdir -p /home/runner/work/GCS--Galaga/GCS--Galaga/
+  
       - name: Organizar espacio de trabajo
-        run: mv ./build/libs/*.jar ${{ github.workspace }}/galaga.jar
+        run: mv ./build/libs/*.jar /home/runner/work/GCS--Galaga/GCS--Galaga/galaga.jar
   
       - name: Upload JAR as Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: galaga
-          path: ${{ github.workspace }}/galaga.jar
+          name: mi-aplicacion
+          path: /home/runner/work/GCS--Galaga/GCS--Galaga/galaga.jar
+
