@@ -203,5 +203,5 @@ jobs:
       - name: Upload JAR as Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: mi-aplicacion
+          name: galaga
           path: ${{ github.workspace }}/galaga.jar
