@@ -27,7 +27,7 @@ task createJar(type: Jar) {
     archiveFileName = "galaga.jar"
     manifest {
         attributes(
-            'Main-Class': 'mvc.Game' // Cambia esto según tu estructura de paquetes y la clase principal
+            'Main-Class': '_08final.mvc.controller.Game' // Cambia esto según tu estructura de paquetes y la clase principal
         )
     }
 }
