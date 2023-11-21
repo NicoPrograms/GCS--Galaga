@@ -22,6 +22,15 @@ java {
     targetCompatibility = JavaVersion.VERSION_17
 }
 
+task createJar(type: Jar) {
+    from sourceSets.main.output
+    archiveFileName = "galaga.jar"
+}
+
+artifacts {
+    archives createJar
+}
+
 sonar {
   properties {
     property "sonar.projectKey", "NicoPrograms_GCS--Galaga"
