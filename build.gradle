@@ -25,7 +25,13 @@ java {
 task createJar(type: Jar) {
     from sourceSets.main.output
     archiveFileName = "galaga.jar"
+    manifest {
+        attributes(
+            'Main-Class': 'mvc.Game' // Cambia esto según tu estructura de paquetes y la clase principal
+        )
+    }
 }
+
 
 artifacts {
     archives createJar
